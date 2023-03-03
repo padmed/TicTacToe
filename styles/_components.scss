@@ -26,7 +26,7 @@
 .E,
 .T3 {
   animation-name: rotate_1;
-  animation-duration: 1.5s; /* Change this to the desired duration */
+  animation-duration: 2.5s; /* Change this to the desired duration */
   animation-iteration-count: infinite; /* Change this to the desired number of iterations */
 }
 
@@ -35,25 +35,54 @@
 .O,
 .C2 {
   animation-name: rotate_2;
-  animation-duration: 1.5s; /* Change this to the desired duration */
+  animation-duration: 2s; /* Change this to the desired duration */
   animation-iteration-count: infinite; /* Change this to the desired number of iterations */
 }
 
 body {
   background-image: url(../img/background.png);
+  background-color: #4e31aa;
+
+  * {
+    font-family: base.$font-bubble;
+  }
 
   .tictactoe {
     font-weight: bolder;
     font-size: 50px;
     letter-spacing: 10px;
-    border: 7px dashed rgba($color: #edd174, $alpha: 1);
     border-radius: 15px;
     background-color: rgba($color: #4e31aa, $alpha: 0.7);
     box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.8);
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  #start {
+    transform: rotate(-3deg);
+    background-color: #edd174;
+    border: 4px solid base.$purple;
+    color: #4e31aa;
+    font-size: 30px;
+    font-weight: bolder;
+    width: 200px;
+    height: 60px;
+    border-radius: 25px;
+    letter-spacing: 5px;
+    box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.8);
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(1.05);
     }
   }
 }

@@ -1,5 +1,6 @@
 body.greetScreen {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -15,4 +16,11 @@ body.greetScreen {
     align-self: center;
     justify-self: center;
   }
+}
+
+#start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px;
 }
