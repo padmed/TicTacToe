@@ -1,3 +1,38 @@
+@keyframes rotate_1 {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(30deg);
+  }
+}
+@keyframes rotate_2 {
+  from {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-30deg);
+  }
+}
+.T,
+.C,
+.A,
+.E,
+.T3 {
+  animation-name: rotate_1;
+  animation-duration: 1.5s; /* Change this to the desired duration */
+  animation-iteration-count: infinite; /* Change this to the desired number of iterations */
+}
+
+.I,
+.T2,
+.O,
+.C2 {
+  animation-name: rotate_2;
+  animation-duration: 1.5s; /* Change this to the desired duration */
+  animation-iteration-count: infinite; /* Change this to the desired number of iterations */
+}
+
 body {
   background-image: url(../img/background.png);
   background-color: #4e31aa;
@@ -11,12 +46,6 @@ body .tictactoe {
 body .tictactoe img {
   width: 100px;
   height: 100px;
-}
-body .tictactoe .T2 {
-  transform: rotate(30deg);
-}
-body .tictactoe .C2 {
-  transform: rotate(340deg);
 }
 
 html,
