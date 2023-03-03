@@ -1,0 +1,30 @@
+@use "base";
+
+body {
+  background-image: url(../img/background.png);
+  background-color: #4e31aa;
+
+  .tictactoe {
+    color: #feb139;
+    font-weight: bolder;
+    font-size: 50px;
+    letter-spacing: 10px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .T2 {
+      transform: rotate(30deg);
+    }
+    .C2 {
+      transform: rotate(340deg);
+    }
+  }
+}
+
+html,
+body {
+  height: 100%;
+}

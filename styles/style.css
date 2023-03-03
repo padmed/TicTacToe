@@ -1,1 +1,42 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  background-image: url(../img/background.png);
+  background-color: #4e31aa;
+}
+body .tictactoe {
+  color: #feb139;
+  font-weight: bolder;
+  font-size: 50px;
+  letter-spacing: 10px;
+}
+body .tictactoe img {
+  width: 100px;
+  height: 100px;
+}
+body .tictactoe .T2 {
+  transform: rotate(30deg);
+}
+body .tictactoe .C2 {
+  transform: rotate(340deg);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body.greetScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tictactoe {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(3, min-content);
+  gap: 20px;
+}
+.tictactoe > span {
+  align-self: center;
+  justify-self: center;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,17 @@
+body.greetScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tictactoe {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-template-rows: repeat(3, min-content);
+  gap: 20px;
+
+  & > span {
+    align-self: center;
+    justify-self: center;
+  }
+}
