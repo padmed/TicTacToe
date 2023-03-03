@@ -41,25 +41,20 @@
 
 body {
   background-image: url(../img/background.png);
-  background-color: #4e31aa;
 
   .tictactoe {
-    color: #feb139;
     font-weight: bolder;
     font-size: 50px;
     letter-spacing: 10px;
+    border: 7px dashed rgba($color: #edd174, $alpha: 1);
+    border-radius: 15px;
+    background-color: rgba($color: #4e31aa, $alpha: 0.7);
+    box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.8);
 
     img {
       width: 100px;
       height: 100px;
     }
-
-    // .T2 {
-    //   transform: scaleX(-1);
-    // }
-    // .C2 {
-    //   transform: rotate(340deg);
-    // }
   }
 }
 
