@@ -56,8 +56,9 @@ body {
     box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.8);
 
     img {
-      width: 150px;
-      height: 150px;
+      transition: all 0.3s ease-in-out;
+      width: 100px;
+      height: 100px;
     }
   }
 
@@ -90,4 +91,13 @@ body {
 html,
 body {
   height: 100%;
+}
+
+@media only screen and (min-width: 800px) {
+  .tictactoe .letter {
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
 }
