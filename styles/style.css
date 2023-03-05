@@ -55,7 +55,7 @@ body .tictactoe {
   font-size: 50px;
   letter-spacing: 10px;
   border-radius: 15px;
-  background-color: rgba(78, 49, 170, 0.7);
+  background-color: rgba(78, 49, 170, 0.8);
   box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
 }
 body .tictactoe img {
@@ -76,7 +76,7 @@ body .startButton {
   letter-spacing: 5px;
   box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 body #start.buttonActive {
   box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
@@ -91,6 +91,11 @@ body body {
     width: 150px;
     height: 150px;
   }
+}
+@media (pointer: fine) {
+  body .startButton {
+    transition: 0.2s;
+  }
   body .startButton:hover {
     box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
@@ -100,7 +105,7 @@ body body {
   }
 }
 
-body.greetScreen {
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +113,7 @@ body.greetScreen {
 }
 
 .tictactoe {
-  margin-top: 100px;
+  margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(3, min-content);
   grid-template-rows: repeat(3, min-content);
