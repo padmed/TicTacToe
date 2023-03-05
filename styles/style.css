@@ -37,6 +37,19 @@
   animation-iteration-count: infinite; /* Change this to the desired number of iterations */
 }
 
+img {
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-image: url(../img/background.png);
   background-color: #4e31aa;
@@ -138,9 +151,16 @@ body {
   margin: 60px;
 }
 
+.opponentScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .difficulities {
   display: flex;
   flex-direction: column;
+  gap: 50px;
 }
 
 @media only screen and (min-width: 800px) {

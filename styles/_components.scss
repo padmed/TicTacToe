@@ -46,6 +46,11 @@ img {
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+html,
+body {
+  height: 100%;
+}
 body {
   background-image: url(../img/background.png);
   background-color: #4e31aa;

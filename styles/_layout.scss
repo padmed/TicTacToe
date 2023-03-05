@@ -23,9 +23,16 @@ body {
   margin: 60px;
 }
 
+.opponentScreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .difficulities {
   display: flex;
   flex-direction: column;
+  gap: 50px;
 }
 
 @media only screen and (min-width: 800px) {
