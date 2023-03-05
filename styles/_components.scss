@@ -44,15 +44,6 @@ body {
   background-color: #4e31aa;
   user-select: none;
 
-  & > .tictactoe,
-  & > #start,
-  & > .difficulities {
-    transform: scale(0);
-    transition: 0.3s;
-    opacity: 0;
-    visibility: hidden;
-  }
-
   * {
     font-family: base.$font-bubble;
   }
@@ -86,21 +77,11 @@ body {
   }
 }
 
-.greetScreen {
-  & > .tictactoe,
-  & > #start {
-    transform: scale(1);
-    transition: 0.3s;
-    opacity: 1;
-    visibility: visible;
-  }
-}
 .opponentScreen {
-  & > .difficulities {
-    transform: scale(1);
-    transition: 0.3s;
-    opacity: 1;
-    visibility: visible;
+  .difficulities > .difficulity {
+    @include base.button-style;
+    width: 150px;
+    height: 70px;
   }
 }
 
