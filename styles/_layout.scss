@@ -1,3 +1,4 @@
+@use "base";
 body {
   display: flex;
   flex-direction: column;
@@ -24,9 +25,21 @@ body {
 }
 
 .opponentScreen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .opponents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    .opponent:last-child {
+      margin-bottom: 120px;
+    }
+  }
 }
 
 .difficulities {

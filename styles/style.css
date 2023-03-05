@@ -48,6 +48,7 @@ img {
 html,
 body {
   height: 100%;
+  color: #edd174;
 }
 
 body {
@@ -78,6 +79,8 @@ body .startButton {
   background-color: #edd174;
   width: 200px;
   height: 60px;
+  width: 200px;
+  height: 60px;
   border: 4px solid #4e31aa;
   background-color: #edd174;
   color: #4e31aa;
@@ -94,7 +97,13 @@ body #start.buttonActive {
   transform: scale(1.1);
 }
 
-.opponentScreen .difficulities > .difficulity {
+.opponentScreen .opponents {
+  height: 100%;
+}
+
+.opponent {
+  width: 200px;
+  height: 60px;
   border: 4px solid #4e31aa;
   background-color: #edd174;
   color: #4e31aa;
@@ -105,8 +114,6 @@ body #start.buttonActive {
   box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
   cursor: pointer;
   transition: 0.1s;
-  width: 150px;
-  height: 70px;
 }
 
 @media only screen and (min-width: 800px) {
@@ -151,10 +158,18 @@ body {
   margin: 60px;
 }
 
-.opponentScreen {
+.opponentScreen .opponents {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 50px;
+}
+.opponentScreen .opponents h2 {
+  margin-top: 40px;
+}
+.opponentScreen .opponents .opponent:last-child {
+  margin-bottom: 120px;
 }
 
 .difficulities {
@@ -169,16 +184,16 @@ body {
     margin-top: 50px;
   }
 }
-body > .tictactoe, body > #start, body > .difficulities {
+body > .tictactoe, body > #start, body > .difficulities, body > .opponents, body > #opponentHeader {
   transform: scale(0);
-  transition: 0.3s;
+  transition: 0.2s;
   opacity: 0;
   visibility: hidden;
 }
 
 .greetScreen > .tictactoe, .greetScreen > #start {
   transform: scale(1);
-  transition: 0.3s;
+  transition: 0.2s;
   opacity: 1;
   visibility: visible;
 }
@@ -186,10 +201,10 @@ body > .tictactoe, body > #start, body > .difficulities {
   display: none;
 }
 
-.opponentScreen > .tictactoe, .opponentScreen > #start {
+.opponentScreen > .tictactoe, .opponentScreen > #start, .opponentScreen > .difficulities {
   display: none;
 }
-.opponentScreen > .difficulities {
+.opponentScreen > .opponents, .opponentScreen > #opponentHeader {
   transform: scale(1);
   transition: 0.3s;
   opacity: 1;

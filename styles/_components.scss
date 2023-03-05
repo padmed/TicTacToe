@@ -50,6 +50,7 @@ img {
 html,
 body {
   height: 100%;
+  color: base.$yellow;
 }
 body {
   background-image: url(../img/background.png);
@@ -89,12 +90,12 @@ body {
   }
 }
 
-.opponentScreen {
-  .difficulities > .difficulity {
-    @include base.button-style;
-    width: 150px;
-    height: 70px;
-  }
+.opponentScreen .opponents {
+  height: 100%;
+}
+
+.opponent {
+  @include base.button-style;
 }
 
 @media only screen and (min-width: 800px) {
