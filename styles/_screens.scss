@@ -1,0 +1,37 @@
+body {
+  & > .tictactoe,
+  & > #start,
+  & > .difficulities {
+    transform: scale(0);
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.greetScreen {
+  & > .tictactoe,
+  & > #start {
+    transform: scale(1);
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .difficulities {
+    display: none;
+  }
+}
+
+.opponentScreen {
+  & > .tictactoe,
+  & > #start {
+    display: none;
+  }
+  & > .difficulities {
+    transform: scale(1);
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+  }
+}
