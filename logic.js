@@ -37,7 +37,10 @@ const displayController = (function () {
 
     startGameButton.onclick = function () {
       screen.classList.remove("greetScreen");
-      screen.classList.add("opponentScreen");
+      setTimeout(() => {
+        screen.classList.add("opponentScreen");
+      }, 300);
+
       touchButton.inert(startGameButton);
     };
   };
