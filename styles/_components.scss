@@ -39,6 +39,10 @@
   animation-iteration-count: infinite; /* Change this to the desired number of iterations */
 }
 
+.greetScreen {
+  user-select: none;
+}
+
 body {
   background-image: url(../img/background.png);
   background-color: #4e31aa;
@@ -62,7 +66,7 @@ body {
     }
   }
 
-  #start {
+  .startButton {
     transform: rotate(-3deg);
     background-color: #edd174;
     border: 4px solid base.$purple;
@@ -76,28 +80,34 @@ body {
     box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.8);
     cursor: pointer;
     transition: 0.2s;
-
-    &:hover {
-      box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
-      transform: scale(1.1);
-    }
-
-    &:active {
-      transform: scale(1.05);
-    }
   }
-}
 
-html,
-body {
-  height: 100%;
-}
+  #start.buttonActive {
+    box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
+    transform: scale(1.1);
+  }
+  html,
+  body {
+    height: 100%;
+  }
 
-@media only screen and (min-width: 800px) {
-  .tictactoe .letter {
-    img {
-      width: 150px;
-      height: 150px;
+  @media only screen and (min-width: 800px) {
+    .tictactoe .letter {
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .startButton {
+      &:hover {
+        box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(1.05);
+      }
     }
   }
 }
