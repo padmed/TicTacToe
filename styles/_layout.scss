@@ -23,6 +23,11 @@ body {
   margin: 60px;
 }
 
+.difficulities {
+  display: flex;
+  flex-direction: column;
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;

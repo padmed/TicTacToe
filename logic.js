@@ -34,10 +34,10 @@ const displayController = (function () {
 
   const startGame = function () {
     touchButton.active(startGameButton);
-    // touchButton.inert(startGameButton);
 
     startGameButton.onclick = function () {
       screen.classList.remove("greetScreen");
+      screen.classList.add("opponentScreen");
       touchButton.inert(startGameButton);
     };
   };
