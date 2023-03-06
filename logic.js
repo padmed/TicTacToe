@@ -31,20 +31,25 @@ const touchButton = (function () {
 const displayController = (function () {
   const screen = document.body;
   const startGameButton = document.querySelector("#start");
+  const opponentButtons = document.querySelectorAll(".opponent");
 
   const startGame = function () {
     touchButton.active(startGameButton);
-
     startGameButton.onclick = function () {
       screen.classList.remove("greetScreen");
-      setTimeout(() => {
-        screen.classList.add("opponentScreen");
-      }, 300);
-
       touchButton.inert(startGameButton);
+      setTimeout(() => {
+        chooseOpponent();
+      }, 300);
     };
   };
 
+  const chooseOpponent = function () {
+    screen.classList.add("opponentScreen");
+    opponentButtons.forEach((button) => {
+      touchButton.active(button);
+    });
+  };
   return {
     startGame,
   };

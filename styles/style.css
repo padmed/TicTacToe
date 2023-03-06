@@ -92,7 +92,8 @@ body .startButton {
   cursor: pointer;
   transition: 0.1s;
 }
-body #start.buttonActive {
+body #start.buttonActive,
+body .opponent.buttonActive {
   box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
   transform: scale(1.1);
 }
@@ -123,14 +124,17 @@ body #start.buttonActive {
   }
 }
 @media (pointer: fine) {
-  .startButton {
+  .startButton,
+  .opponent {
     transition: 0.2s;
   }
-  .startButton:hover {
+  .startButton:hover,
+  .opponent:hover {
     box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
   }
-  .startButton:active {
+  .startButton:active,
+  .opponent:active {
     transform: scale(1.05);
   }
 }
@@ -156,6 +160,7 @@ body {
 
 #start {
   margin: 60px;
+  margin-bottom: 0;
 }
 
 .opponentScreen .opponents {

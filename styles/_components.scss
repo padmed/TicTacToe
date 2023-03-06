@@ -84,7 +84,8 @@ body {
     @include base.button-style;
   }
 
-  #start.buttonActive {
+  #start.buttonActive,
+  .opponent.buttonActive {
     box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
     transform: scale(1.1);
   }
@@ -108,7 +109,8 @@ body {
 }
 
 @media (pointer: fine) {
-  .startButton {
+  .startButton,
+  .opponent {
     transition: 0.2s;
     &:hover {
       box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
