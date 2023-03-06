@@ -9,7 +9,7 @@
     <script src="./logic.js" defer></script>
     <title>TicTacToe</title>
   </head>
-  <body class="greetScreen">
+  <body class="shapeScreen">
     <div class="startGame">
       <div class="tictactoe">
         <div class="T letter"><img src="./icons/T.svg" alt="T" /></div>
@@ -25,15 +25,27 @@
       <button id="start" class="startButton" type="button">PLAY</button>
     </div>
     <div class="opponents">
-      <h2 id="opponentHeader">Choose your opponent</h2>
-      <button class="opponent" id="player">Player</button>
-      <button class="opponent" id="bot">Bot</button>
+      <h2 id="opponentHeader">CHOOSE YOUR OPPONENT</h2>
+      <button class="opponent" id="player">PLAYER</button>
+      <button class="opponent" id="bot">BOT</button>
     </div>
     <div class="difficulities">
       <h2>Choose game mode</h2>
       <button class="difficulity">Easy</button
       ><button class="difficulity">Medium</button>
       <button class="difficulity">Hard (AI)</button>
+    </div>
+    <div class="shapes">
+      <div class="randomPlayerNotifier">
+        <h2>CHOOSING A RANDOM PLAYER</h2>
+        <p class="loading"></p>
+      </div>
+      <button id="cross" class="shape">
+        <img src="./icons/cross.svg" alt="Cross" />
+      </button>
+      <button id="donut" class="shape">
+        <img src="./icons/donut.svg" alt="Donut" />
+      </button>
     </div>
   </body>
 </html>

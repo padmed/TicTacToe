@@ -63,6 +63,20 @@ body {
   gap: 50px;
 }
 
+.shapes {
+  margin-bottom: 15vh;
+
+  .randomPlayerNotifier {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  h2 {
+    padding-right: 0;
+  }
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;
