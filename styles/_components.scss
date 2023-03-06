@@ -94,14 +94,19 @@ body {
 .opponentScreen .opponents,
 .opponentScreen .opponents {
   height: 100%;
-
-  h2 {
-    font-size: 40px;
-  }
 }
 
-.opponent {
+h2 {
+  font-size: 40px;
+  padding: 15px;
+}
+.opponent,
+.difficulity {
   @include base.button-style;
+}
+
+.difficulity {
+  font-size: 20px;
 }
 
 @media only screen and (min-width: 800px) {
@@ -115,7 +120,8 @@ body {
 
 @media (pointer: fine) {
   .startButton,
-  .opponent {
+  .opponent,
+  .difficulity {
     transition: 0.2s;
     &:hover {
       box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
