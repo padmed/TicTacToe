@@ -138,7 +138,7 @@ body .opponent.buttonActive {
     transform: scale(1.05);
   }
 }
-body {
+.startGame {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,6 +161,7 @@ body {
 #start {
   margin: 60px;
   margin-bottom: 0;
+  margin-bottom: 5vh;
 }
 
 .opponentScreen .opponents {
@@ -189,14 +190,17 @@ body {
     margin-top: 50px;
   }
 }
-body > .tictactoe, body > #start, body > .difficulities, body > .opponents, body > #opponentHeader {
+body > .startGame, body > .difficulities, body > .opponents, body > #opponentHeader {
   transform: scale(0);
   transition: 0.2s;
   opacity: 0;
   visibility: hidden;
 }
 
-.greetScreen > .tictactoe, .greetScreen > #start {
+.greetScreen .startGame {
+  height: 100%;
+}
+.greetScreen .startGame {
   transform: scale(1);
   transition: 0.2s;
   opacity: 1;
@@ -206,7 +210,7 @@ body > .tictactoe, body > #start, body > .difficulities, body > .opponents, body
   display: none;
 }
 
-.opponentScreen > .tictactoe, .opponentScreen > #start, .opponentScreen > .difficulities {
+.opponentScreen > .startGame, .opponentScreen > .difficulities {
   display: none;
 }
 .opponentScreen > .opponents, .opponentScreen > #opponentHeader {

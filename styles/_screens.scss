@@ -1,6 +1,5 @@
 body {
-  & > .tictactoe,
-  & > #start,
+  & > .startGame,
   & > .difficulities,
   & > .opponents,
   & > #opponentHeader {
@@ -12,8 +11,10 @@ body {
 }
 
 .greetScreen {
-  & > .tictactoe,
-  & > #start {
+  .startGame {
+    height: 100%;
+  }
+  .startGame {
     transform: scale(1);
     transition: 0.2s;
     opacity: 1;
@@ -26,8 +27,7 @@ body {
 }
 
 .opponentScreen {
-  & > .tictactoe,
-  & > #start,
+  & > .startGame,
   & > .difficulities {
     display: none;
   }
