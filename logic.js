@@ -27,9 +27,26 @@ const TouchButton = (function () {
     button.removeEventListener("touchstart", onTouchStart);
     button.removeEventListener("touchend", onTouchEnd);
   };
+
+  const activeMultiple = function (buttons) {
+    buttons.forEach((button) => {
+      button.addEventListener("touchstart", onTouchStart);
+      button.addEventListener("touchend", onTouchEnd);
+    });
+  };
+
+  const inertMultiple = function (buttons) {
+    buttons.forEach((button) => {
+      button.removeEventListener("touchstart", onTouchStart);
+      button.removeEventListener("touchend", onTouchEnd);
+    });
+  };
+
   return {
     active,
     inert,
+    activeMultiple,
+    inertMultiple,
   };
 })();
 
@@ -37,6 +54,7 @@ const displayController = (function () {
   const screen = document.body;
   const startGameButton = document.querySelector("#start");
   const opponentButtons = document.querySelectorAll(".opponent");
+  const difficulityButtons = document.querySelectorAll(".difficulity");
 
   const startGame = function () {
     TouchButton.active(startGameButton);
@@ -52,19 +70,17 @@ const displayController = (function () {
   const opponentEventHandler = function (event) {
     const opponent = event.target.id;
     GameBoard.setOpponent(opponent);
-    opponentButtons.forEach((btn) => {
-      TouchButton.inert(btn);
-    });
+    TouchButton.inertMultiple(opponentButtons);
+    screen.classList.remove("opponentScreen");
   };
 
   const chooseOpponent = function () {
     screen.classList.add("opponentScreen");
-    opponentButtons.forEach((button) => {
-      TouchButton.active(button);
+    TouchButton.activeMultiple(opponentButtons);
 
+    opponentButtons.forEach((button) => {
       button.onclick = (event) => {
         opponentEventHandler(event);
-        screen.classList.remove("opponentScreen");
         setTimeout(() => {
           chooseDifficulity();
         }, 300);
