@@ -49,19 +49,31 @@ const displayController = (function () {
     };
   };
 
+  const opponentEventHandler = function (event) {
+    const opponent = event.target.id;
+    GameBoard.setOpponent(opponent);
+    opponentButtons.forEach((btn) => {
+      TouchButton.inert(btn);
+    });
+  };
+
   const chooseOpponent = function () {
     screen.classList.add("opponentScreen");
     opponentButtons.forEach((button) => {
       TouchButton.active(button);
 
       button.onclick = (event) => {
-        const opponent = event.target.id;
-        GameBoard.setOpponent(opponent);
-        opponentButtons.forEach((btn) => {
-          TouchButton.inert(btn);
-        });
+        opponentEventHandler(event);
+        screen.classList.remove("opponentScreen");
+        setTimeout(() => {
+          chooseDifficulity();
+        }, 300);
       };
     });
+  };
+
+  const chooseDifficulity = function () {
+    screen.classList.add("difficulityScreen");
   };
   return {
     startGame,

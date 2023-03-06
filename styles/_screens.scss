@@ -1,8 +1,7 @@
 body {
   & > .startGame,
   & > .difficulities,
-  & > .opponents,
-  & > #opponentHeader {
+  & > .opponents {
     transform: scale(0);
     transition: 0.2s;
     opacity: 0;
@@ -31,8 +30,23 @@ body {
   & > .difficulities {
     display: none;
   }
+
   & > .opponents,
   & > #opponentHeader {
+    transform: scale(1);
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.difficulityScreen {
+  & > .startGame,
+  & > .opponents {
+    display: none;
+  }
+
+  .difficulities {
     transform: scale(1);
     transition: 0.3s;
     opacity: 1;

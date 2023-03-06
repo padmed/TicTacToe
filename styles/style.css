@@ -190,7 +190,7 @@ body .opponent.buttonActive {
     margin-top: 50px;
   }
 }
-body > .startGame, body > .difficulities, body > .opponents, body > #opponentHeader {
+body > .startGame, body > .difficulities, body > .opponents {
   transform: scale(0);
   transition: 0.2s;
   opacity: 0;
@@ -214,6 +214,16 @@ body > .startGame, body > .difficulities, body > .opponents, body > #opponentHea
   display: none;
 }
 .opponentScreen > .opponents, .opponentScreen > #opponentHeader {
+  transform: scale(1);
+  transition: 0.3s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.difficulityScreen > .startGame, .difficulityScreen > .opponents {
+  display: none;
+}
+.difficulityScreen .difficulities {
   transform: scale(1);
   transition: 0.3s;
   opacity: 1;
