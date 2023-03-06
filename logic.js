@@ -1,9 +1,15 @@
 const Player = function () {};
 const GameBoard = (function () {
+  let Player1, Player2;
   let gameBoard = [];
+
+  const setOpponent = function (opponent) {};
+  return {
+    setOpponent,
+  };
 })();
 
-const touchButton = (function () {
+const TouchButton = (function () {
   const onTouchStart = (event) => {
     event.target.classList.add("buttonActive");
   };
@@ -21,7 +27,6 @@ const touchButton = (function () {
     button.removeEventListener("touchstart", onTouchStart);
     button.removeEventListener("touchend", onTouchEnd);
   };
-
   return {
     active,
     inert,
@@ -34,10 +39,10 @@ const displayController = (function () {
   const opponentButtons = document.querySelectorAll(".opponent");
 
   const startGame = function () {
-    touchButton.active(startGameButton);
-    startGameButton.onclick = function () {
+    TouchButton.active(startGameButton);
+    startGameButton.onclick = () => {
       screen.classList.remove("greetScreen");
-      touchButton.inert(startGameButton);
+      TouchButton.inert(startGameButton);
       setTimeout(() => {
         chooseOpponent();
       }, 300);
@@ -47,7 +52,15 @@ const displayController = (function () {
   const chooseOpponent = function () {
     screen.classList.add("opponentScreen");
     opponentButtons.forEach((button) => {
-      touchButton.active(button);
+      TouchButton.active(button);
+
+      button.onclick = (event) => {
+        const opponent = event.target.id;
+        GameBoard.setOpponent(opponent);
+        opponentButtons.forEach((btn) => {
+          TouchButton.inert(btn);
+        });
+      };
     });
   };
   return {
