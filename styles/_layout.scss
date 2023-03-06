@@ -1,5 +1,10 @@
 @use "base";
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .startGame {
@@ -7,6 +12,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 
 .tictactoe {

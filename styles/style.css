@@ -98,6 +98,7 @@ body .opponent.buttonActive {
   transform: scale(1.1);
 }
 
+.opponentScreen .opponents,
 .opponentScreen .opponents {
   height: 100%;
 }
@@ -138,11 +139,20 @@ body .opponent.buttonActive {
     transform: scale(1.05);
   }
 }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
 .startGame {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
 }
 
 .tictactoe {
@@ -192,22 +202,20 @@ body .opponent.buttonActive {
 }
 body > .startGame, body > .difficulities, body > .opponents {
   transform: scale(0);
-  transition: 0.2s;
+  transition: 0.5s;
   opacity: 0;
   visibility: hidden;
 }
 
-.greetScreen .startGame {
-  height: 100%;
+.greetScreen .difficulities,
+.greetScreen .opponents {
+  display: none;
 }
 .greetScreen .startGame {
   transform: scale(1);
   transition: 0.2s;
   opacity: 1;
   visibility: visible;
-}
-.greetScreen .difficulities {
-  display: none;
 }
 
 .opponentScreen > .startGame, .opponentScreen > .difficulities {

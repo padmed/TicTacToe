@@ -3,25 +3,23 @@ body {
   & > .difficulities,
   & > .opponents {
     transform: scale(0);
-    transition: 0.2s;
+    transition: 0.5s;
     opacity: 0;
     visibility: hidden;
   }
 }
 
 .greetScreen {
-  .startGame {
-    height: 100%;
+  .difficulities,
+  .opponents {
+    display: none;
   }
+
   .startGame {
     transform: scale(1);
     transition: 0.2s;
     opacity: 1;
     visibility: visible;
-  }
-
-  .difficulities {
-    display: none;
   }
 }
 
