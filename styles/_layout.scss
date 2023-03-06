@@ -35,13 +35,14 @@ body {
   margin-bottom: 5vh;
 }
 
-.opponentScreen {
+body {
   .opponents {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 50px;
+    position: absolute;
 
     h2 {
       margin-top: 40px;

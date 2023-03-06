@@ -102,6 +102,10 @@ body .opponent.buttonActive {
 .opponentScreen .opponents {
   height: 100%;
 }
+.opponentScreen .opponents h2,
+.opponentScreen .opponents h2 {
+  font-size: 40px;
+}
 
 .opponent {
   width: 200px;
@@ -174,17 +178,18 @@ body {
   margin-bottom: 5vh;
 }
 
-.opponentScreen .opponents {
+body .opponents {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 50px;
+  position: absolute;
 }
-.opponentScreen .opponents h2 {
+body .opponents h2 {
   margin-top: 40px;
 }
-.opponentScreen .opponents .opponent:last-child {
+body .opponents .opponent:last-child {
   margin-bottom: 120px;
 }
 
@@ -202,7 +207,7 @@ body {
 }
 body > .startGame, body > .difficulities, body > .opponents {
   transform: scale(0);
-  transition: 0.5s;
+  transition: 0.4s;
   opacity: 0;
   visibility: hidden;
 }
