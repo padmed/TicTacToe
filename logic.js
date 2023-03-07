@@ -37,11 +37,13 @@ const Player = function () {
 };
 
 const GameBoard = (function () {
-  let player = "miau",
-    opponent = "vuala";
+  let player = Player(),
+    opponent = null;
   let gameBoard = [];
 
-  const setOpponent = function (opponent) {};
+  const setOpponent = function (newOpponent) {
+    opponent = newOpponent;
+  };
   const getRandomPlayer = function () {
     const bothPlayers = [player, opponent];
     const randomIndex = Math.floor(Math.random() * 2);
