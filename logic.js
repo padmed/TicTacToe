@@ -1,8 +1,11 @@
-const Player = function (name) {
-  let playerName = name;
+const Player = function () {
+  let playerName = null;
   let shape = null;
   let score = 0;
 
+  const setPlayerName = function (name) {
+    playerName = name;
+  };
   const getPlayerName = function () {
     return playerName;
   };
@@ -24,6 +27,7 @@ const Player = function (name) {
   };
 
   return {
+    setPlayerName,
     getPlayerName,
     getPlayerShape,
     setPlayerShape,
