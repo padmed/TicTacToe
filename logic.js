@@ -36,6 +36,11 @@ const Player = function () {
   };
 };
 
+const Bot = function () {
+  const bot = Player();
+  return Object.assign({}, bot);
+};
+
 const GameBoard = (function () {
   let player = Player(),
     opponent = null;
