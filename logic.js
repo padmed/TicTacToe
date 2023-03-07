@@ -1,4 +1,37 @@
-const Player = function () {};
+const Player = function (name) {
+  let playerName = name;
+  let shape = null;
+  let score = 0;
+
+  const getPlayerName = function () {
+    return playerName;
+  };
+
+  const getPlayerShape = function () {
+    return shape;
+  };
+
+  const setPlayerShape = function (newShape) {
+    shape = newShape;
+  };
+
+  const getScore = function () {
+    return score;
+  };
+
+  const incrementScore = function () {
+    ++score;
+  };
+
+  return {
+    getPlayerName,
+    getPlayerShape,
+    setPlayerShape,
+    getScore,
+    incrementScore,
+  };
+};
+
 const GameBoard = (function () {
   let player = "miau",
     opponent = "vuala";
@@ -107,4 +140,3 @@ const displayController = (function () {
 })();
 
 displayController.startGame();
-console.log(GameBoard.getRandomPlayer());
