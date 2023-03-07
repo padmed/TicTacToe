@@ -126,15 +126,15 @@ h2 {
   @keyframes dots {
     0%,
     20% {
-      color: rgba(0, 0, 0, 0);
-      text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+      color: base.$purple;
+      text-shadow: 0.25em 0 0 base.$purple, 0.5em 0 0 base.$purple;
     }
     40% {
       color: base.$yellow;
-      text-shadow: 0.25em 0 0 rgba(0, 0, 0, 0), 0.5em 0 0 rgba(0, 0, 0, 0);
+      text-shadow: 0.25em 0 0 base.$purple, 0.5em 0 0 base.$purple;
     }
     60% {
-      text-shadow: 0.25em 0 0 base.$yellow, 0.5em 0 0 rgba(0, 0, 0, 0);
+      text-shadow: 0.25em 0 0 base.$yellow, 0.5em 0 0 base.$purple;
     }
     80%,
     100% {
