@@ -1,11 +1,20 @@
 const Player = function () {};
 const GameBoard = (function () {
-  let Player1, Player2;
+  let player = "miau",
+    opponent = "vuala";
   let gameBoard = [];
 
   const setOpponent = function (opponent) {};
+  const getRandomPlayer = function () {
+    const bothPlayers = [player, opponent];
+    const randomIndex = Math.floor(Math.random() * 2);
+
+    return bothPlayers[randomIndex];
+  };
+
   return {
     setOpponent,
+    getRandomPlayer,
   };
 })();
 
@@ -90,6 +99,7 @@ const displayController = (function () {
 
   const chooseDifficulity = function () {
     screen.classList.add("difficulityScreen");
+    TouchButton.activeMultiple(difficulityButtons);
   };
   return {
     startGame,
@@ -97,3 +107,4 @@ const displayController = (function () {
 })();
 
 displayController.startGame();
+console.log(GameBoard.getRandomPlayer());
