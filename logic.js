@@ -44,6 +44,7 @@ const GameBoard = (function () {
   const setOpponent = function (newOpponent) {
     opponent = newOpponent;
   };
+
   const getRandomPlayer = function () {
     const bothPlayers = [player, opponent];
     const randomIndex = Math.floor(Math.random() * 2);
@@ -117,7 +118,12 @@ const displayController = (function () {
 
   const opponentEventHandler = function (event) {
     const opponent = event.target.id;
-    GameBoard.setOpponent(opponent);
+    if (opponent === "bot") {
+      GameBoard.setOpponent = Player();
+      GameBoard.player.setPlayerName("You");
+      GameBoard.opponent.setPlayerName("Bot");
+    } else {
+    }
     TouchButton.inertMultiple(opponentButtons);
     screen.classList.remove("opponentScreen");
   };
