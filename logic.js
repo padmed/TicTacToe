@@ -50,7 +50,7 @@ const GameBoard = (function () {
     opponent = newOpponent;
   };
 
-  const getOppnent = function () {
+  const getOpponent = function () {
     return opponent;
   };
 
@@ -68,7 +68,9 @@ const GameBoard = (function () {
   return {
     setOpponent,
     getRandomPlayer,
-    getOppnent,
+    getOpponent,
+    getPlayer,
+    opponent,
   };
 })();
 
@@ -118,6 +120,8 @@ const displayController = (function () {
   const startGameButton = document.querySelector("#start");
   const opponentButtons = document.querySelectorAll(".opponent");
   const difficulityButtons = document.querySelectorAll(".difficulity");
+  let player = GameBoard.getPlayer();
+  let opponent;
 
   const startGame = function () {
     TouchButton.active(startGameButton);
@@ -131,16 +135,20 @@ const displayController = (function () {
   };
 
   const opponentEventHandler = function (event) {
-    const opponent = event.target.id;
+    const opponentID = event.target.id;
 
-    if (opponent === "bot") {
-      GameBoard.setOpponent(Player());
-      // console.log(GameBoard.getOppnent().setPlayerName("alio"));
-      // console.log(GameBoard.getOppnent().getPlayerName());
-      GameBoard.player.setPlayerName("You");
-      GameBoard.opponent.setPlayerName("Bot");
+    if (opponentID === "bot") {
+      player.setPlayerName("You");
+      GameBoard.setOpponent(Bot());
+      opponent = GameBoard.getOpponent();
+      opponent.setPlayerName("Bot");
     } else {
+      player.setPlayerName("Player 1");
+      GameBoard.setOpponent(Player());
+      opponent = GameBoard.getOpponent();
+      opponent.setPlayerName("Player 2");
     }
+
     TouchButton.inertMultiple(opponentButtons);
     screen.classList.remove("opponentScreen");
   };
