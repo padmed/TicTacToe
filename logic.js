@@ -42,12 +42,20 @@ const Bot = function () {
 };
 
 const GameBoard = (function () {
-  let player = Player(),
-    opponent = null;
+  let player = Player();
+  let opponent = null;
   let gameBoard = [];
 
   const setOpponent = function (newOpponent) {
     opponent = newOpponent;
+  };
+
+  const getOppnent = function () {
+    return opponent;
+  };
+
+  const getPlayer = function () {
+    return player;
   };
 
   const getRandomPlayer = function () {
@@ -60,6 +68,7 @@ const GameBoard = (function () {
   return {
     setOpponent,
     getRandomPlayer,
+    getOppnent,
   };
 })();
 
@@ -123,8 +132,11 @@ const displayController = (function () {
 
   const opponentEventHandler = function (event) {
     const opponent = event.target.id;
+
     if (opponent === "bot") {
-      GameBoard.setOpponent = Player();
+      GameBoard.setOpponent(Player());
+      // console.log(GameBoard.getOppnent().setPlayerName("alio"));
+      // console.log(GameBoard.getOppnent().getPlayerName());
       GameBoard.player.setPlayerName("You");
       GameBoard.opponent.setPlayerName("Bot");
     } else {
