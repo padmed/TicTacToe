@@ -70,7 +70,6 @@ const GameBoard = (function () {
     getRandomPlayer,
     getOpponent,
     getPlayer,
-    opponent,
   };
 })();
 
@@ -159,9 +158,15 @@ const displayController = (function () {
 
     opponentButtons.forEach((button) => {
       button.onclick = (event) => {
+        const opponentID = event.target.id;
+
         opponentEventHandler(event);
         setTimeout(() => {
-          chooseDifficulity();
+          if (opponentID === "bot") {
+            chooseDifficulity();
+          } else {
+            chooseShape();
+          }
         }, 300);
       };
     });
@@ -170,6 +175,10 @@ const displayController = (function () {
   const chooseDifficulity = function () {
     screen.classList.add("difficulityScreen");
     TouchButton.activeMultiple(difficulityButtons);
+  };
+
+  const chooseShape = function () {
+    screen.classList.add("shapeScreen");
   };
   return {
     startGame,
