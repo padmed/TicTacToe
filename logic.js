@@ -38,7 +38,7 @@ const Player = function () {
 
 const Bot = function () {
   const bot = Player();
-  const difficulity = null;
+  let difficulity = null;
 
   const setDifficulity = function (difficulityLevel) {
     difficulity = difficulityLevel;
@@ -186,9 +186,15 @@ const displayController = (function () {
     const difficulityID = event.target.id;
 
     if (difficulityID === "easy") {
+      opponent.setDifficulity("Easy");
     } else if (difficulityID === "medium") {
+      opponent.setDifficulity("Medium");
     } else {
+      opponent.setDifficulity("Hard");
     }
+
+    TouchButton.inertMultiple(difficulityButtons);
+    screen.classList.remove("difficulityScreen");
   };
 
   const chooseDifficulity = function () {
@@ -198,6 +204,9 @@ const displayController = (function () {
     difficulityButtons.forEach((button) => {
       button.onclick = (event) => {
         difficulityEventHandler(event);
+        setTimeout(() => {
+          chooseShape();
+        }, 300);
       };
     });
   };
