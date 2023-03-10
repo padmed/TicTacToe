@@ -238,6 +238,7 @@ body .opponents .opponent:last-child {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
   gap: 50px;
 }
 
@@ -251,6 +252,13 @@ body .opponents .opponent:last-child {
 }
 .shapes h2 {
   padding-right: 0;
+}
+
+.shapes h2 {
+  position: relative;
+}
+.shapes .loading {
+  position: absolute;
 }
 
 @media only screen and (min-width: 800px) {

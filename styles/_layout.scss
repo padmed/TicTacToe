@@ -60,6 +60,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
   gap: 50px;
 }
 
@@ -74,6 +75,16 @@ body {
 
   h2 {
     padding-right: 0;
+  }
+}
+
+.shapes {
+  h2 {
+    position: relative;
+  }
+
+  .loading {
+    position: absolute;
   }
 }
 
