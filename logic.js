@@ -211,8 +211,18 @@ const displayController = (function () {
     });
   };
 
+  const shapeChoosingPlayer = function () {
+    const randomPlayer = GameBoard.getRandomPlayer().getPlayerName();
+    const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
+
+    setTimeout(() => {
+      randomPlayerHeader.textContent = `${randomPlayer} picks the shape`;
+    }, 1500);
+  };
+
   const chooseShape = function () {
     screen.classList.add("shapeScreen");
+    shapeChoosingPlayer();
   };
   return {
     startGame,
