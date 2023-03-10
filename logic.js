@@ -38,7 +38,17 @@ const Player = function () {
 
 const Bot = function () {
   const bot = Player();
-  return Object.assign({}, bot);
+  const difficulity = null;
+
+  const setDifficulity = function (difficulityLevel) {
+    difficulity = difficulityLevel;
+  };
+
+  const getDifficulity = function () {
+    return difficulity;
+  };
+
+  return Object.assign({}, bot, { setDifficulity, getDifficulity });
 };
 
 const GameBoard = (function () {
