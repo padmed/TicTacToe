@@ -172,9 +172,24 @@ const displayController = (function () {
     });
   };
 
+  const difficulityEventHandler = function (event) {
+    const difficulityID = event.target.id;
+
+    if (difficulityID === "easy") {
+    } else if (difficulityID === "medium") {
+    } else {
+    }
+  };
+
   const chooseDifficulity = function () {
     screen.classList.add("difficulityScreen");
     TouchButton.activeMultiple(difficulityButtons);
+
+    difficulityButtons.forEach((button) => {
+      button.onclick = (event) => {
+        difficulityEventHandler(event);
+      };
+    });
   };
 
   const chooseShape = function () {
