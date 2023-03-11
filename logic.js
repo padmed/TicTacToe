@@ -245,8 +245,15 @@ const displayController = (function () {
   };
 
   const chooseShape = function () {
+    const crossButton = document.querySelector("#crossBackground");
+    const donutButton = document.querySelector("#donutBackground");
+
     screen.classList.add("shapeScreen");
     shapeChoosingPlayer();
+    setTimeout(() => {
+      crossButton.classList.add("visible");
+      donutButton.classList.add("visible");
+    }, 1700);
   };
   return {
     startGame,
