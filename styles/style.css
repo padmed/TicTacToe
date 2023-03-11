@@ -138,6 +138,12 @@ h2 {
   height: 150px;
   background-color: transparent;
 }
+.shapeScreen #randomPlayerHeader {
+  transition: 0.3s;
+}
+.shapeScreen .makeDissapear {
+  transform: scale(0);
+}
 .shapeScreen #randomPlayerHeader.styled {
   border: 3px solid #01c2ff;
   width: -moz-fit-content;
@@ -146,6 +152,7 @@ h2 {
   height: fit-content;
   background-color: #4e31aa;
   border-radius: 25px;
+  transform: scale(1);
 }
 .shapeScreen #crossBackground,
 .shapeScreen #donutBackground {
@@ -309,6 +316,10 @@ body .opponents .opponent:last-child {
 }
 .shapes h2 {
   padding-right: 0;
+}
+
+#randomPlayerHeader {
+  position: absolute;
 }
 
 #crossBackground,

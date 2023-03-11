@@ -121,12 +121,21 @@ h2 {
     background-color: transparent;
   }
 
+  #randomPlayerHeader {
+    transition: 0.3s;
+  }
+
+  .makeDissapear {
+    transform: scale(0);
+  }
+
   #randomPlayerHeader.styled {
     border: 3px solid base.$blue;
     width: fit-content;
     height: fit-content;
     background-color: rgba($color: base.$purple, $alpha: 1);
     border-radius: 25px;
+    transform: scale(1);
   }
 
   #crossBackground,

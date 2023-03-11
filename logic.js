@@ -234,8 +234,12 @@ const displayController = (function () {
     }
 
     setTimeout(() => {
+      randomPlayerHeader.classList.add("makeDissapear");
+    }, 1300);
+    setTimeout(() => {
       randomPlayerHeader.textContent = heading;
-    }, 1500);
+      randomPlayerHeader.classList.add("styled");
+    }, 1800);
   };
 
   const shapeChoosingPlayer = function () {
