@@ -12,11 +12,11 @@ const Player = function () {
   };
 
   const checkShapePicker = function () {
-    return shapeChooser;
+    return picksShape;
   };
 
   const letPickShape = function () {
-    shapeChooser = true;
+    picksShape = true;
   };
 
   const getPlayerShape = function () {
@@ -42,6 +42,8 @@ const Player = function () {
     setPlayerShape,
     getScore,
     incrementScore,
+    checkShapePicker,
+    letPickShape,
   };
 };
 
@@ -220,12 +222,20 @@ const displayController = (function () {
     });
   };
 
+  const writeRndPlrHdr = function (rndmPlr) {
+    const playerName = rndmPlr.getPlayerName();
+    if (playerName === "You") {
+      return "You pick the shape";
+    } else {
+      return `${playerName} picks the shape`;
+    }
+  };
   const shapeChoosingPlayer = function () {
-    const randomPlayer = GameBoard.getRandomPlayer().getPlayerName();
+    const randomPlayer = GameBoard.getRandomPlayer();
     const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
 
     setTimeout(() => {
-      randomPlayerHeader.textContent = `${randomPlayer} picks the shape`;
+      randomPlayerHeader.textContent = writeRndPlrHdr(randomPlayer);
     }, 1500);
   };
 
