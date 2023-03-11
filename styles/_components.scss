@@ -121,18 +121,33 @@ h2 {
     background-color: transparent;
   }
 
+  #randomPlayerHeader.styled {
+    border: 3px solid base.$blue;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba($color: base.$purple, $alpha: 1);
+    border-radius: 25px;
+  }
+
   #crossBackground,
   #donutBackground {
     height: 100%;
     width: 50%;
+    filter: grayscale(100%);
+
+    &:hover {
+      filter: grayscale(0%);
+    }
   }
 
   #crossBackground {
     background-image: url(../img/background-crosses.png);
+    border-right: 4px solid base.$purple;
   }
 
   #donutBackground {
     background-image: url(../img/background-donuts.png);
+    border-left: 4px solid base.$purple;
   }
   .backgroundButton,
   .backgroundButton:focus,
@@ -149,6 +164,21 @@ h2 {
     text-decoration: none;
     cursor: pointer;
     outline: none;
+  }
+
+  #crossBackground,
+  #donutBackground {
+    visibility: hidden;
+    transition: 0.5s;
+  }
+
+  #crossBackground.visible,
+  #donutBackground.visible {
+    visibility: visible;
+
+    &:hover {
+      // transform: scale(1.01);
+    }
   }
 
   .loading:after {

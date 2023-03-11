@@ -84,8 +84,6 @@ body {
   position: absolute;
   top: 0;
   z-index: -2;
-  visibility: hidden;
-  transition: 0.5s;
 }
 
 #crossBackground {
@@ -106,14 +104,15 @@ body {
 #crossBackground.visible,
 #donutBackground.visible {
   display: block;
-  visibility: visible;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 }
 
 .shapes {
+  display: flex;
+  justify-content: center;
+
+  #randomPlayerHeader.styled {
+    padding: 15px;
+  }
   h2 {
     position: relative;
   }

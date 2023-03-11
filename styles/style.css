@@ -138,16 +138,32 @@ h2 {
   height: 150px;
   background-color: transparent;
 }
+.shapeScreen #randomPlayerHeader.styled {
+  border: 3px solid #01c2ff;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: #4e31aa;
+  border-radius: 25px;
+}
 .shapeScreen #crossBackground,
 .shapeScreen #donutBackground {
   height: 100%;
   width: 50%;
+  filter: grayscale(100%);
+}
+.shapeScreen #crossBackground:hover,
+.shapeScreen #donutBackground:hover {
+  filter: grayscale(0%);
 }
 .shapeScreen #crossBackground {
   background-image: url(../img/background-crosses.png);
+  border-right: 4px solid #4e31aa;
 }
 .shapeScreen #donutBackground {
   background-image: url(../img/background-donuts.png);
+  border-left: 4px solid #4e31aa;
 }
 .shapeScreen .backgroundButton,
 .shapeScreen .backgroundButton:focus,
@@ -164,6 +180,15 @@ h2 {
   text-decoration: none;
   cursor: pointer;
   outline: none;
+}
+.shapeScreen #crossBackground,
+.shapeScreen #donutBackground {
+  visibility: hidden;
+  transition: 0.5s;
+}
+.shapeScreen #crossBackground.visible,
+.shapeScreen #donutBackground.visible {
+  visibility: visible;
 }
 .shapeScreen .loading:after {
   content: " .";
@@ -291,8 +316,6 @@ body .opponents .opponent:last-child {
   position: absolute;
   top: 0;
   z-index: -2;
-  visibility: hidden;
-  transition: 0.5s;
 }
 
 #crossBackground {
@@ -314,13 +337,15 @@ body .opponents .opponent:last-child {
 #crossBackground.visible,
 #donutBackground.visible {
   display: block;
-  visibility: visible;
-}
-#crossBackground.visible:hover,
-#donutBackground.visible:hover {
-  transform: scale(1.02);
 }
 
+.shapes {
+  display: flex;
+  justify-content: center;
+}
+.shapes #randomPlayerHeader.styled {
+  padding: 15px;
+}
 .shapes h2 {
   position: relative;
 }
