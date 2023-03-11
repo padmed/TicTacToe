@@ -2,12 +2,21 @@ const Player = function () {
   let playerName = null;
   let shape = null;
   let score = 0;
+  let picksShape = false;
 
   const setPlayerName = function (name) {
     playerName = name;
   };
   const getPlayerName = function () {
     return playerName;
+  };
+
+  const checkShapePicker = function () {
+    return shapeChooser;
+  };
+
+  const letPickShape = function () {
+    shapeChooser = true;
   };
 
   const getPlayerShape = function () {
