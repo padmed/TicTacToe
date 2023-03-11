@@ -224,19 +224,24 @@ const displayController = (function () {
 
   const writeRndPlrHdr = function (rndmPlr) {
     const playerName = rndmPlr.getPlayerName();
-    if (playerName === "You") {
-      return "You pick the shape";
-    } else {
-      return `${playerName} picks the shape`;
-    }
-  };
-  const shapeChoosingPlayer = function () {
-    const randomPlayer = GameBoard.getRandomPlayer();
     const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
+    let heading = "";
+
+    if (playerName === "You") {
+      heading = "You pick the shape";
+    } else {
+      heading = `${playerName} picks the shape`;
+    }
 
     setTimeout(() => {
-      randomPlayerHeader.textContent = writeRndPlrHdr(randomPlayer);
+      randomPlayerHeader.textContent = heading;
     }, 1500);
+  };
+
+  const shapeChoosingPlayer = function () {
+    const randomPlayer = GameBoard.getRandomPlayer();
+    randomPlayer.letPickShape();
+    writeRndPlrHdr(randomPlayer);
   };
 
   const chooseShape = function () {
