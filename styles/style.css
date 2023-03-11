@@ -100,7 +100,7 @@ body .difficulity.buttonActive {
 }
 
 .opponentScreen .opponents,
-.opponentScreen .opponents {
+.shapeScreen .shapes {
   height: 100%;
 }
 
@@ -129,10 +129,41 @@ h2 {
   font-size: 20px;
 }
 
+.shapeScreen .shapes {
+  margin-bottom: 0;
+  width: 100%;
+}
 .shapeScreen .shape {
   width: 150px;
   height: 150px;
   background-color: transparent;
+}
+.shapeScreen #crossBackground,
+.shapeScreen #donutBackground {
+  height: 100%;
+  width: 50%;
+}
+.shapeScreen #crossBackground {
+  background-image: url(../img/background-crosses.png);
+}
+.shapeScreen #donutBackground {
+  background-image: url(../img/background-donuts.png);
+}
+.shapeScreen .backgroundButton,
+.shapeScreen .backgroundButton:focus,
+.shapeScreen .backgroundButton:hover,
+.shapeScreen .backgroundButton:active,
+.shapeScreen .backgroundButton:visited {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
 }
 .shapeScreen .loading:after {
   content: " .";
@@ -249,9 +280,45 @@ body .opponents .opponent:last-child {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  z-index: 1;
 }
 .shapes h2 {
   padding-right: 0;
+}
+
+#crossBackground,
+#donutBackground {
+  position: absolute;
+  top: 0;
+  z-index: -2;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+#crossBackground {
+  left: -100%;
+}
+
+#crossBackground.visible {
+  left: 0;
+}
+
+#donutBackground {
+  right: -100%;
+}
+
+#donutBackground.visible {
+  right: 0;
+}
+
+#crossBackground.visible,
+#donutBackground.visible {
+  display: block;
+  visibility: visible;
+}
+#crossBackground.visible:hover,
+#donutBackground.visible:hover {
+  transform: scale(1.02);
 }
 
 .shapes h2 {

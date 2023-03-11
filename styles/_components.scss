@@ -93,7 +93,7 @@ body {
 }
 
 .opponentScreen .opponents,
-.opponentScreen .opponents {
+.shapeScreen .shapes {
   height: 100%;
 }
 
@@ -111,10 +111,44 @@ h2 {
 }
 
 .shapeScreen {
+  .shapes {
+    margin-bottom: 0;
+    width: 100%;
+  }
   .shape {
     width: 150px;
     height: 150px;
     background-color: transparent;
+  }
+
+  #crossBackground,
+  #donutBackground {
+    height: 100%;
+    width: 50%;
+  }
+
+  #crossBackground {
+    background-image: url(../img/background-crosses.png);
+  }
+
+  #donutBackground {
+    background-image: url(../img/background-donuts.png);
+  }
+  .backgroundButton,
+  .backgroundButton:focus,
+  .backgroundButton:hover,
+  .backgroundButton:active,
+  .backgroundButton:visited {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
   }
 
   .loading:after {
