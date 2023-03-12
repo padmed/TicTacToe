@@ -140,7 +140,7 @@ h2 {
 }
 .shapeScreen #randomPlayerHeader {
   transition: 0.3s;
-  font-size: 25px;
+  font-size: 23px;
 }
 .shapeScreen .makeDissapear {
   transform: scale(0);
@@ -153,18 +153,13 @@ h2 {
   height: fit-content;
   color: #4e31aa;
   background-color: #edd174;
-  border-radius: 25px;
+  border-radius: 23px;
   transform: scale(1);
 }
 .shapeScreen #crossBackground,
 .shapeScreen #donutBackground {
   height: 100%;
   width: 50%;
-  filter: grayscale(100%);
-}
-.shapeScreen #crossBackground:hover,
-.shapeScreen #donutBackground:hover {
-  filter: grayscale(0%);
 }
 .shapeScreen #crossBackground {
   background-image: url(../img/background-crosses.png);
@@ -229,7 +224,7 @@ h2 {
   .shapes > #randomPlayerHeader {
     font-size: 40px;
   }
-  #randomPlayerHeader > .loading {
+  #randomPlayerHeader > .loading::after {
     font-size: 40px;
   }
 }
@@ -249,6 +244,14 @@ h2 {
   .opponent:active,
   .difficulity:active {
     transform: scale(1.05);
+  }
+  .shapes > #crossBackground,
+  .shapes > #donutBackground {
+    filter: grayscale(100%);
+  }
+  .shapes > #crossBackground:hover,
+  .shapes > #donutBackground:hover {
+    filter: grayscale(0);
   }
 }
 body {

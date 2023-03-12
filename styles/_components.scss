@@ -123,7 +123,7 @@ h2 {
 
   #randomPlayerHeader {
     transition: 0.3s;
-    font-size: 25px;
+    font-size: 23px;
   }
 
   .makeDissapear {
@@ -136,7 +136,7 @@ h2 {
     height: fit-content;
     color: base.$purple;
     background-color: rgba($color: base.$yellow, $alpha: 1);
-    border-radius: 25px;
+    border-radius: 23px;
     transform: scale(1);
   }
 
@@ -144,11 +144,6 @@ h2 {
   #donutBackground {
     height: 100%;
     width: 50%;
-    filter: grayscale(100%);
-
-    &:hover {
-      filter: grayscale(0%);
-    }
   }
 
   #crossBackground {
@@ -186,10 +181,6 @@ h2 {
   #crossBackground.visible,
   #donutBackground.visible {
     visibility: visible;
-
-    &:hover {
-      // transform: scale(1.01);
-    }
   }
 
   .loading:after {
@@ -229,7 +220,7 @@ h2 {
     font-size: 40px;
   }
 
-  #randomPlayerHeader > .loading {
+  #randomPlayerHeader > .loading::after {
     font-size: 40px;
   }
 }
@@ -246,6 +237,15 @@ h2 {
 
     &:active {
       transform: scale(1.05);
+    }
+  }
+
+  .shapes > #crossBackground,
+  .shapes > #donutBackground {
+    filter: grayscale(100%);
+
+    &:hover {
+      filter: grayscale(0);
     }
   }
 }
