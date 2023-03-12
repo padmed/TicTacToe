@@ -140,17 +140,19 @@ h2 {
 }
 .shapeScreen #randomPlayerHeader {
   transition: 0.3s;
+  font-size: 25px;
 }
 .shapeScreen .makeDissapear {
   transform: scale(0);
 }
 .shapeScreen #randomPlayerHeader.styled {
-  border: 3px solid #01c2ff;
+  border: 3px solid #4e31aa;
   width: -moz-fit-content;
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: #4e31aa;
+  color: #4e31aa;
+  background-color: #edd174;
   border-radius: 25px;
   transform: scale(1);
 }
@@ -199,7 +201,7 @@ h2 {
 }
 .shapeScreen .loading:after {
   content: " .";
-  font-size: 40px;
+  font-size: 25px;
   animation: dots 1s steps(5, end) infinite;
 }
 @keyframes dots {
@@ -223,6 +225,12 @@ h2 {
   .tictactoe .letter img {
     width: 150px;
     height: 150px;
+  }
+  .shapes > #randomPlayerHeader {
+    font-size: 40px;
+  }
+  #randomPlayerHeader > .loading {
+    font-size: 40px;
   }
 }
 @media (pointer: fine) {

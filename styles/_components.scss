@@ -123,6 +123,7 @@ h2 {
 
   #randomPlayerHeader {
     transition: 0.3s;
+    font-size: 25px;
   }
 
   .makeDissapear {
@@ -130,10 +131,11 @@ h2 {
   }
 
   #randomPlayerHeader.styled {
-    border: 3px solid base.$blue;
+    border: 3px solid base.$purple;
     width: fit-content;
     height: fit-content;
-    background-color: rgba($color: base.$purple, $alpha: 1);
+    color: base.$purple;
+    background-color: rgba($color: base.$yellow, $alpha: 1);
     border-radius: 25px;
     transform: scale(1);
   }
@@ -192,7 +194,7 @@ h2 {
 
   .loading:after {
     content: " .";
-    font-size: 40px;
+    font-size: 25px;
     animation: dots 1s steps(5, end) infinite;
   }
 
@@ -222,6 +224,13 @@ h2 {
       width: 150px;
       height: 150px;
     }
+  }
+  .shapes > #randomPlayerHeader {
+    font-size: 40px;
+  }
+
+  #randomPlayerHeader > .loading {
+    font-size: 40px;
   }
 }
 
