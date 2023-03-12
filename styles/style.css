@@ -169,22 +169,6 @@ h2 {
   background-image: url(../img/background-donuts.png);
   border-left: 4px solid #4e31aa;
 }
-.shapeScreen .backgroundButton,
-.shapeScreen .backgroundButton:focus,
-.shapeScreen .backgroundButton:hover,
-.shapeScreen .backgroundButton:active,
-.shapeScreen .backgroundButton:visited {
-  background-color: transparent;
-  border: none;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  outline: none;
-}
 .shapeScreen #crossBackground,
 .shapeScreen #donutBackground {
   visibility: hidden;
@@ -193,6 +177,33 @@ h2 {
 .shapeScreen #crossBackground.visible,
 .shapeScreen #donutBackground.visible {
   visibility: visible;
+}
+.shapeScreen #crossBackground.visible > .shape,
+.shapeScreen #donutBackground.visible > .shape {
+  width: 200px;
+  height: 60px;
+  border: 4px solid #4e31aa;
+  background-color: #edd174;
+  color: #4e31aa;
+  font-size: 30px;
+  font-weight: bolder;
+  border-radius: 25px;
+  letter-spacing: 5px;
+  box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
+  cursor: pointer;
+  transition: 0.1s;
+  box-shadow: none;
+  font-size: 20px;
+  width: 150px;
+  height: 45px;
+}
+.shapeScreen #crossBackground.visible > .shape:first-of-type:hover,
+.shapeScreen #donutBackground.visible > .shape:first-of-type:hover {
+  box-shadow: 0 0 25px 30px rgba(255, 255, 255, 0.6);
+}
+.shapeScreen #crossBackground.visible > .shape:last-of-type:hover,
+.shapeScreen #donutBackground.visible > .shape:last-of-type:hover {
+  box-shadow: 0 0 25px 30px rgba(255, 255, 255, 0.6);
 }
 .shapeScreen .loading:after {
   content: " .";
@@ -227,22 +238,30 @@ h2 {
   #randomPlayerHeader > .loading::after {
     font-size: 40px;
   }
+  .shapes > #crossBackground.visible > .shape,
+  .shapes > #donutBackground.visible > .shape {
+    width: 200px;
+    height: 60px;
+  }
 }
 @media (pointer: fine) {
   .startButton,
   .opponent,
-  .difficulity {
+  .difficulity,
+  .shape {
     transition: 0.2s;
   }
   .startButton:hover,
   .opponent:hover,
-  .difficulity:hover {
+  .difficulity:hover,
+  .shape:hover {
     box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
   }
   .startButton:active,
   .opponent:active,
-  .difficulity:active {
+  .difficulity:active,
+  .shape:active {
     transform: scale(1.05);
   }
   .shapes > #crossBackground,
@@ -358,7 +377,9 @@ body .opponents .opponent:last-child {
 
 #crossBackground.visible,
 #donutBackground.visible {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .shapes {

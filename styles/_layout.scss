@@ -105,7 +105,9 @@ body {
 
 #crossBackground.visible,
 #donutBackground.visible {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .shapes {
