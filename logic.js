@@ -251,12 +251,14 @@ const displayController = (function () {
   const chooseShape = function () {
     const crossBackground = document.querySelector("#crossBackground");
     const donutBackground = document.querySelector("#donutBackground");
+    const shapeButtons = document.querySelectorAll(".shape");
 
     screen.classList.add("shapeScreen");
     shapeChoosingPlayer();
     setTimeout(() => {
       crossBackground.classList.add("visible");
       donutBackground.classList.add("visible");
+      TouchButton.activeMultiple(shapeButtons);
     }, 1700);
   };
   return {

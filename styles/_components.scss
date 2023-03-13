@@ -86,7 +86,9 @@ body {
 
   #start.buttonActive,
   .opponent.buttonActive,
-  .difficulity.buttonActive {
+  .difficulity.buttonActive,
+  #crossBackground.visible > .shape.buttonActive,
+  #donutBackground.visible > .shape.buttonActive {
     box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
     transform: scale(1.1);
   }

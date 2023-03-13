@@ -94,7 +94,9 @@ body .startButton {
 }
 body #start.buttonActive,
 body .opponent.buttonActive,
-body .difficulity.buttonActive {
+body .difficulity.buttonActive,
+body #crossBackground.visible > .shape.buttonActive,
+body #donutBackground.visible > .shape.buttonActive {
   box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
   transform: scale(1.1);
 }
