@@ -264,6 +264,27 @@ const displayController = (function () {
     }, 1700);
   };
 
+  const hideshapeScreen = function () {
+    const crossBackground = document.querySelector("#crossBackground");
+    const donutBackground = document.querySelector("#donutBackground");
+    const shapeButtons = document.querySelectorAll(".shape");
+    const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
+
+    TouchButton.inertMultiple(shapeButtons);
+
+    [crossBackground, donutBackground].forEach((background) => {
+      background.classList.remove("visible");
+    });
+
+    randomPlayerHeader.classList.remove("styled");
+    randomPlayerHeader.classList.add("makeDissapear");
+
+    setTimeout(() => {
+      [crossBackground, donutBackground].forEach((background) => {
+        background.classList.add("disabled");
+      });
+    }, 500);
+  };
   const chooseShape = function () {
     const shapeButtons = document.querySelectorAll(".shape");
 
@@ -272,7 +293,9 @@ const displayController = (function () {
     showShapeScreen();
 
     shapeButtons.forEach((button) => {
-      button.onclick = () => {};
+      button.onclick = () => {
+        hideshapeScreen();
+      };
     });
   };
   return {
