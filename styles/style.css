@@ -374,6 +374,11 @@ body .opponents .opponent:last-child {
   right: 0;
 }
 
+#crossBackground.inactive,
+#donutBackground.inactive {
+  display: none;
+}
+
 #crossBackground.visible,
 #donutBackground.visible {
   display: flex;
