@@ -51,6 +51,8 @@ const Bot = function () {
   const bot = Player();
   let difficulity = null;
 
+  const player = Player();
+
   const setDifficulity = function (difficulityLevel) {
     difficulity = difficulityLevel;
   };
@@ -59,7 +61,20 @@ const Bot = function () {
     return difficulity;
   };
 
-  return Object.assign({}, bot, { setDifficulity, getDifficulity });
+  const letBotChooseShape = function () {
+    const shapes = ["cross", "donut"];
+    const randomIndex = Math.floor(Math.random() * 2);
+
+    player.setPlayerShape(shapes[randomIndex]);
+
+    return shapes[randomIndex];
+  };
+
+  return Object.assign(player, bot, {
+    setDifficulity,
+    getDifficulity,
+    letBotChooseShape,
+  });
 };
 
 const GameBoard = (function () {
@@ -285,6 +300,7 @@ const displayController = (function () {
       });
     }, 500);
   };
+
   const chooseShape = function () {
     const shapeButtons = document.querySelectorAll(".shape");
 
@@ -292,6 +308,10 @@ const displayController = (function () {
     shapeChoosingPlayer();
     showShapeScreen();
 
+    // console.log(opponent.getPlayerName());
+    // if (opponent.getPlayerName() === "Bot" && opponent.checkShapePicker()) {
+    //   console.log("bot picks");
+    // }
     shapeButtons.forEach((button) => {
       button.onclick = () => {
         hideshapeScreen();
