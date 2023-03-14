@@ -248,18 +248,26 @@ const displayController = (function () {
     writeRndPlrHdr(randomPlayer);
   };
 
-  const chooseShape = function () {
+  const showShapeBackgrounds = function () {
     const crossBackground = document.querySelector("#crossBackground");
     const donutBackground = document.querySelector("#donutBackground");
     const shapeButtons = document.querySelectorAll(".shape");
 
-    screen.classList.add("shapeScreen");
-    shapeChoosingPlayer();
+    setTimeout(() => {
+      crossBackground.classList.remove("inactive");
+      donutBackground.classList.remove("inactive");
+    }, 1660);
     setTimeout(() => {
       crossBackground.classList.add("visible");
       donutBackground.classList.add("visible");
       TouchButton.activeMultiple(shapeButtons);
     }, 1700);
+  };
+
+  const chooseShape = function () {
+    screen.classList.add("shapeScreen");
+    shapeChoosingPlayer();
+    showShapeBackgrounds();
   };
   return {
     startGame,
