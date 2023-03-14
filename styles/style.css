@@ -358,6 +358,11 @@ body .opponents .opponent:last-child {
   z-index: -2;
 }
 
+#crossBackground.disabled.shapeBackground,
+#donutBackground.disabled.shapeBackground {
+  display: none;
+}
+
 #crossBackground {
   left: -100%;
 }
