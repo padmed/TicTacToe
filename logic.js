@@ -356,16 +356,17 @@ const displayController = (function () {
       setTimeout(() => {
         hideshapeScreen();
       }, 5000);
-      console.log("player", player.getPlayerShape());
-      console.log("opponent", opponent.getPlayerShape());
+    } else {
+      shapeButtons.forEach((button) => {
+        button.onclick = (event) => {
+          hideshapeScreen();
+          GameBoard.setPlayerShapes(event.target.id);
+        };
+      });
     }
-    shapeButtons.forEach((button) => {
-      button.onclick = (event) => {
-        hideshapeScreen();
-        GameBoard.setPlayerShapes(event.target.id);
-      };
-    });
   };
+
+  const playGame = function () {};
   return {
     startGame,
   };
