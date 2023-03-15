@@ -101,11 +101,29 @@ const GameBoard = (function () {
     return bothPlayers[randomIndex];
   };
 
+  const setPlayerShapes = function (shape) {
+    if (player.checkShapePicker()) {
+      if (shape === "cross") {
+        player.setPlayerShape("cross");
+        opponent.setPlayerShape("donut");
+      } else {
+        player.setPlayerShape("donut");
+        opponent.setPlayerShape("cross");
+      }
+    } else {
+      if (shape === "cross") {
+        player.setPlayerShape("donut");
+        opponent.setPlayerShape("cross");
+      }
+    }
+  };
+
   return {
     setOpponent,
     getRandomPlayer,
     getOpponent,
     getPlayer,
+    setPlayerShapes,
   };
 })();
 
@@ -306,6 +324,7 @@ const displayController = (function () {
     const botShape = opponent.letBotChooseShape();
     const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
 
+    GameBoard.setPlayerShapes(botShape);
     shapeButtons.forEach((button) => {
       button.setAttribute("disabled", "");
 
@@ -332,14 +351,18 @@ const displayController = (function () {
 
     if (opponent.getPlayerName() === "Bot" && opponent.checkShapePicker()) {
       showBotDecision();
-      console.log(player.getPlayerShape());
       setTimeout(() => {
         hideshapeScreen();
       }, 5000);
+      console.log("player", player.getPlayerShape());
+      console.log("opponent", opponent.getPlayerShape());
     }
     shapeButtons.forEach((button) => {
-      button.onclick = () => {
+      button.onclick = (event) => {
         hideshapeScreen();
+        GameBoard.setPlayerShapes(event.target.id);
+        // console.log("player", player.getPlayerShape());
+        // console.log("opponent", opponent.getPlayerShape());
       };
     });
   };
