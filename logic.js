@@ -301,6 +301,28 @@ const displayController = (function () {
     }, 500);
   };
 
+  const showBotDecision = function () {
+    const shapeButtons = document.querySelectorAll(".shape");
+    const botShape = opponent.letBotChooseShape();
+    const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
+
+    shapeButtons.forEach((button) => {
+      button.setAttribute("disabled", "");
+
+      if (button.id === botShape) {
+        setTimeout(() => {
+          randomPlayerHeader.classList.remove("styled");
+          randomPlayerHeader.classList.add("makeDissapear");
+        }, 3500);
+
+        setTimeout(() => {
+          randomPlayerHeader.textContent = `Bot picked ${botShape}`;
+          randomPlayerHeader.classList.remove("makeDissapear");
+          randomPlayerHeader.classList.add("styled");
+        }, 3800);
+      }
+    });
+  };
   const chooseShape = function () {
     const shapeButtons = document.querySelectorAll(".shape");
 
@@ -308,10 +330,13 @@ const displayController = (function () {
     shapeChoosingPlayer();
     showShapeScreen();
 
-    // console.log(opponent.getPlayerName());
-    // if (opponent.getPlayerName() === "Bot" && opponent.checkShapePicker()) {
-    //   console.log("bot picks");
-    // }
+    if (opponent.getPlayerName() === "Bot" && opponent.checkShapePicker()) {
+      showBotDecision();
+      console.log(player.getPlayerShape());
+      setTimeout(() => {
+        hideshapeScreen();
+      }, 5000);
+    }
     shapeButtons.forEach((button) => {
       button.onclick = () => {
         hideshapeScreen();
