@@ -71,4 +71,10 @@ body {
 }
 
 .gameScreen {
+  & > .startGame,
+  & > .opponents,
+  & > .difficulities,
+  & > .shapes {
+    display: none;
+  }
 }

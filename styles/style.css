@@ -453,4 +453,8 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
   transition: 0.3s;
   opacity: 1;
   visibility: visible;
+}
+
+.gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

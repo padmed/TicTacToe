@@ -319,6 +319,10 @@ const displayController = (function () {
       randomPlayerHeader.classList.add("disabled");
       screen.classList.remove("shapeScreen");
     }, 500);
+
+    setTimeout(() => {
+      playGame();
+    }, 600);
   };
 
   const showBotDecision = function () {
@@ -344,6 +348,7 @@ const displayController = (function () {
       }
     });
   };
+
   const chooseShape = function () {
     const shapeButtons = document.querySelectorAll(".shape");
 
@@ -366,7 +371,10 @@ const displayController = (function () {
     }
   };
 
-  const playGame = function () {};
+  const playGame = function () {
+    screen.classList.add("gameScreen");
+  };
+
   return {
     startGame,
   };
