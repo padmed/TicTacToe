@@ -316,6 +316,8 @@ const displayController = (function () {
       [crossBackground, donutBackground].forEach((background) => {
         background.classList.add("disabled");
       });
+      randomPlayerHeader.classList.add("disabled");
+      screen.classList.remove("shapeScreen");
     }, 500);
   };
 
@@ -361,8 +363,6 @@ const displayController = (function () {
       button.onclick = (event) => {
         hideshapeScreen();
         GameBoard.setPlayerShapes(event.target.id);
-        // console.log("player", player.getPlayerShape());
-        // console.log("opponent", opponent.getPlayerShape());
       };
     });
   };

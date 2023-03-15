@@ -359,7 +359,8 @@ body .opponents .opponent:last-child {
 }
 
 #crossBackground.disabled.shapeBackground,
-#donutBackground.disabled.shapeBackground {
+#donutBackground.disabled.shapeBackground,
+#randomPlayerHeader.disabled {
   display: none;
 }
 
