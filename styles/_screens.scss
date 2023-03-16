@@ -2,7 +2,8 @@ body {
   & > .startGame,
   & > .difficulities,
   & > .opponents,
-  & > .shapes {
+  & > .shapes,
+  & > .game {
     transform: scale(0);
     transition: 0.4s;
     opacity: 0;
@@ -13,7 +14,8 @@ body {
 .greetScreen {
   .difficulities,
   .opponents,
-  & > .shapes {
+  & > .shapes,
+  & > .game {
     display: none;
   }
 
@@ -28,7 +30,8 @@ body {
 .opponentScreen {
   & > .startGame,
   & > .difficulities,
-  & > .shapes {
+  & > .shapes,
+  & > .game {
     display: none;
   }
 
@@ -43,7 +46,8 @@ body {
 .difficulityScreen {
   & > .startGame,
   & > .opponents,
-  & > .shapes {
+  & > .shapes,
+  & > .game {
     display: none;
   }
 
@@ -58,7 +62,8 @@ body {
 .shapeScreen {
   & > .startGame,
   & > .opponents,
-  & > .difficulities {
+  & > .difficulities,
+  & > .game {
     display: none;
   }
 
@@ -76,5 +81,12 @@ body {
   & > .difficulities,
   & > .shapes {
     display: none;
+  }
+
+  & > .game {
+    transform: scale(1);
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
   }
 }

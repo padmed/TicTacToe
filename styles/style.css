@@ -226,6 +226,41 @@ h2 {
   }
 }
 
+.game {
+  width: 100%;
+}
+.game .player1-info,
+.game .player2-info {
+  width: 200px;
+  height: 60px;
+  border: 4px solid #4e31aa;
+  background-color: #edd174;
+  color: #4e31aa;
+  font-size: 30px;
+  font-weight: bolder;
+  border-radius: 25px;
+  letter-spacing: 5px;
+  box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
+  cursor: pointer;
+  transition: 0.1s;
+  border-radius: 10px;
+  box-shadow: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-size: 30px;
+}
+.game .player1-info img,
+.game .player2-info img {
+  width: 30px;
+}
+.game .gameBoard {
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe .letter img {
     width: 150px;
@@ -401,13 +436,46 @@ body .opponents .opponent:last-child {
   position: absolute;
 }
 
+.gameScreen {
+  align-items: center;
+  justify-content: center;
+}
+
+.game {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.3fr 1fr;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas: "p1Info p2Info" "gameBoard gameBoard";
+}
+.game .player1-info {
+  grid-area: p1Info;
+}
+.game .player2-info {
+  grid-area: p2Info;
+}
+.game .gameBoard {
+  grid-area: gameBoard;
+}
+.game .player1-info,
+.game .player2-info {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  gap: 10px;
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;
     margin-top: 50px;
   }
 }
-body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
+body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game {
   transform: scale(0);
   transition: 0.4s;
   opacity: 0;
@@ -415,7 +483,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
 }
 
 .greetScreen .difficulities,
-.greetScreen .opponents, .greetScreen > .shapes {
+.greetScreen .opponents, .greetScreen > .shapes, .greetScreen > .game {
   display: none;
 }
 .greetScreen .startGame {
@@ -425,7 +493,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
   visibility: visible;
 }
 
-.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes {
+.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes, .opponentScreen > .game {
   display: none;
 }
 .opponentScreen > .opponents {
@@ -435,7 +503,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
   visibility: visible;
 }
 
-.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes {
+.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes, .difficulityScreen > .game {
   display: none;
 }
 .difficulityScreen .difficulities {
@@ -445,7 +513,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
   visibility: visible;
 }
 
-.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities {
+.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities, .shapeScreen > .game {
   display: none;
 }
 .shapeScreen > .shapes {
@@ -457,4 +525,10 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes {
 
 .gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes {
   display: none;
+}
+.gameScreen > .game {
+  transform: scale(1);
+  transition: 0.3s;
+  opacity: 1;
+  visibility: visible;
 }/*# sourceMappingURL=style.css.map */
