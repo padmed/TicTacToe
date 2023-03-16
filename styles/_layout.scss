@@ -139,11 +139,11 @@ body {
 .game {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.3fr 1fr;
+  grid-template-rows: min-content min-content min-content;
   justify-items: center;
   align-items: center;
 
-  grid-template-areas: "p1Info p2Info" "gameBoard gameBoard";
+  grid-template-areas: "roundHeader roundHeader" "p1Info p2Info" "gameBoard gameBoard";
 
   .player1-info {
     grid-area: p1Info;
@@ -157,6 +157,10 @@ body {
     grid-area: gameBoard;
   }
 
+  .roundHeader {
+    grid-area: roundHeader;
+  }
+
   .player1-info,
   .player2-info {
     margin-bottom: 50px;
@@ -167,11 +171,33 @@ body {
     padding: 10px 20px;
     gap: 10px;
   }
+
+  .wins {
+    display: flex;
+    gap: 7px;
+  }
 }
 
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;
     margin-top: 50px;
+  }
+
+  .game {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, min-content);
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas:
+      "roundHeader roundHeader roundHeader"
+      "p1Info gameBoard p2Info"
+      ". gameBoard .";
+  }
+
+  .roundHeader {
+    align-self: start;
   }
 }

@@ -249,16 +249,23 @@ h2 {
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  font-size: 30px;
+  font-size: 20px;
 }
 .game .player1-info img,
 .game .player2-info img {
-  width: 30px;
+  width: 20px;
 }
 .game .gameBoard {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   border: 1px solid;
+}
+
+.wins .win {
+  height: 7px;
+  width: 7px;
+  border-radius: 50px;
+  background-color: #4e31aa;
 }
 
 @media only screen and (min-width: 800px) {
@@ -276,6 +283,10 @@ h2 {
   .shapes > #donutBackground.visible > .shape {
     width: 200px;
     height: 60px;
+  }
+  .game .gameBoard {
+    width: 550px;
+    height: 550px;
   }
 }
 @media (pointer: fine) {
@@ -444,10 +455,10 @@ body .opponents .opponent:last-child {
 .game {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.3fr 1fr;
+  grid-template-rows: min-content min-content min-content;
   justify-items: center;
   align-items: center;
-  grid-template-areas: "p1Info p2Info" "gameBoard gameBoard";
+  grid-template-areas: "roundHeader roundHeader" "p1Info p2Info" "gameBoard gameBoard";
 }
 .game .player1-info {
   grid-area: p1Info;
@@ -457,6 +468,9 @@ body .opponents .opponent:last-child {
 }
 .game .gameBoard {
   grid-area: gameBoard;
+}
+.game .roundHeader {
+  grid-area: roundHeader;
 }
 .game .player1-info,
 .game .player2-info {
@@ -468,11 +482,27 @@ body .opponents .opponent:last-child {
   padding: 10px 20px;
   gap: 10px;
 }
+.game .wins {
+  display: flex;
+  gap: 7px;
+}
 
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;
     margin-top: 50px;
+  }
+  .game {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, min-content);
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas: "roundHeader roundHeader roundHeader" "p1Info gameBoard p2Info" ". gameBoard .";
+  }
+  .roundHeader {
+    align-self: start;
   }
 }
 body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game {
