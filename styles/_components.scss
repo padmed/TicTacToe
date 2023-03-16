@@ -228,7 +228,30 @@ h2 {
   .gameBoard {
     width: 300px;
     height: 300px;
-    border: 1px solid;
+    // border: 1px solid;
+    box-shadow: 0 0 30px 45px rgba($color: #4e31aa, $alpha: 0.6);
+
+    div {
+      background-color: rgba($color: base.$purple, $alpha: 0.6);
+    }
+  }
+
+  .gameBoard > div:nth-child(2),
+  .gameBoard > div:nth-child(1),
+  .gameBoard > div:nth-child(4),
+  .gameBoard > div:nth-child(5),
+  .gameBoard > div:nth-child(7),
+  .gameBoard > div:nth-child(8) {
+    border-right: 2px dashed base.$yellow;
+  }
+
+  .gameBoard > div:nth-child(2),
+  .gameBoard > div:nth-child(1),
+  .gameBoard > div:nth-child(3),
+  .gameBoard > div:nth-child(4),
+  .gameBoard > div:nth-child(5),
+  .gameBoard > div:nth-child(6) {
+    border-bottom: 2px dashed base.$yellow;
   }
 }
 
