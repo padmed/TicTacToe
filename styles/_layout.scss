@@ -163,7 +163,7 @@ body {
 
   .player1-info,
   .player2-info {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,10 +185,8 @@ body {
   }
 
   .game {
-    height: 100%;
     display: grid;
     justify-content: center;
-    align-content: center;
     grid-template-columns: repeat(3, min-content);
     grid-template-rows: repeat(3, min-content);
     grid-template-areas:
@@ -199,5 +197,16 @@ body {
 
   .roundHeader {
     align-self: start;
+  }
+
+  .gameBoard {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .player1-info,
+  .player2-info {
+    margin-top: 150px;
   }
 }

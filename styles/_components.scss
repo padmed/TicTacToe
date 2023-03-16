@@ -209,6 +209,7 @@ h2 {
 }
 
 .game {
+  height: 100%;
   width: 100%;
   .player1-info,
   .player2-info {
@@ -261,8 +262,17 @@ h2 {
   }
 
   .game .gameBoard {
-    width: 550px;
-    height: 550px;
+    width: min(550px, 40vw);
+    height: min(550px, 40vw);
+  }
+
+  .game > .player1-info,
+  .game > .player2-info {
+    font-size: 25px;
+
+    img {
+      width: 25px;
+    }
   }
 }
 

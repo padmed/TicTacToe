@@ -227,6 +227,7 @@ h2 {
 }
 
 .game {
+  height: 100%;
   width: 100%;
 }
 .game .player1-info,
@@ -285,8 +286,16 @@ h2 {
     height: 60px;
   }
   .game .gameBoard {
-    width: 550px;
-    height: 550px;
+    width: min(550px, 40vw);
+    height: min(550px, 40vw);
+  }
+  .game > .player1-info,
+  .game > .player2-info {
+    font-size: 25px;
+  }
+  .game > .player1-info img,
+  .game > .player2-info img {
+    width: 25px;
   }
 }
 @media (pointer: fine) {
@@ -474,7 +483,7 @@ body .opponents .opponent:last-child {
 }
 .game .player1-info,
 .game .player2-info {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -493,16 +502,23 @@ body .opponents .opponent:last-child {
     margin-top: 50px;
   }
   .game {
-    height: 100%;
     display: grid;
     justify-content: center;
-    align-content: center;
     grid-template-columns: repeat(3, min-content);
     grid-template-rows: repeat(3, min-content);
     grid-template-areas: "roundHeader roundHeader roundHeader" "p1Info gameBoard p2Info" ". gameBoard .";
   }
   .roundHeader {
     align-self: start;
+  }
+  .gameBoard {
+    margin-top: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .player1-info,
+  .player2-info {
+    margin-top: 150px;
   }
 }
 body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game {
