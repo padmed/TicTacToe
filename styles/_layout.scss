@@ -147,10 +147,12 @@ body {
 
   .player1-info {
     grid-area: p1Info;
+    z-index: 1;
   }
 
   .player2-info {
     grid-area: p2Info;
+    z-index: 1;
   }
 
   .gameBoard {
@@ -158,6 +160,16 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    z-index: 0;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 5px;
+    }
   }
 
   .roundHeader {
@@ -204,12 +216,12 @@ body {
 
   .gameBoard {
     margin-top: 80px;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
   }
 
   .player1-info,
   .player2-info {
-    margin-top: 150px;
+    margin-top: 200px;
   }
 }
