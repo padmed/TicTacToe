@@ -80,7 +80,7 @@ const Bot = function () {
 const GameBoard = (function () {
   let player = Player();
   let opponent = null;
-  let gameBoard = [];
+  let gameBoard = [null, null, null, null, null, null, null, null, null];
 
   const setOpponent = function (newOpponent) {
     opponent = newOpponent;
