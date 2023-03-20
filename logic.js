@@ -126,14 +126,29 @@ const GameBoard = (function () {
 
       if (playerShape === player_turn) {
         gameBoard[squareIndex] = playerShape;
+        renderShape(squareIndex);
         player_turn = opponentShape;
       } else if (opponentShape === player_turn) {
         gameBoard[squareIndex] = opponentShape;
+        renderShape(squareIndex);
         player_turn = playerShape;
       }
     }
+  };
 
-    console.log(gameBoard);
+  const renderShape = function (squareIndex) {
+    const square = document.getElementById(squareIndex);
+    const crossIcon = document.createElement("img");
+    const donutIcon = document.createElement("img");
+
+    crossIcon.src = "./icons/cross.svg";
+    donutIcon.src = "./icons/donut.svg";
+
+    if (player_turn === "cross") {
+      square.appendChild(crossIcon);
+    } else if (player_turn === "donut") {
+      square.appendChild(donutIcon);
+    }
   };
 
   return {
