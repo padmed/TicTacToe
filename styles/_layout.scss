@@ -172,6 +172,10 @@ body {
     }
   }
 
+  .gameSquare {
+    z-index: 1;
+  }
+
   .roundHeader {
     grid-area: roundHeader;
   }

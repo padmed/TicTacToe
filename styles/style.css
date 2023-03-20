@@ -518,6 +518,9 @@ body .opponents .opponent:last-child {
   transform: translate(-50%, -50%);
   padding: 5px;
 }
+.game .gameSquare {
+  z-index: 1;
+}
 .game .roundHeader {
   grid-area: roundHeader;
 }

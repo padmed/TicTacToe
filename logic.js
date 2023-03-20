@@ -372,7 +372,12 @@ const displayController = (function () {
   };
 
   const playGame = function () {
+    const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
+
+    board.addEventListener("click", (e) => {
+      console.log(e.target.id);
+    });
   };
 
   return {
