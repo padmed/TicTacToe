@@ -270,9 +270,17 @@ h2 {
 }
 .game .gameBoard div {
   background-color: rgba(78, 49, 170, 0.6);
+  cursor: pointer;
 }
 .game .gameBoard div img {
   width: 95px;
+  transition: 0.2s;
+  -webkit-backface-visibility: hidden; /* IE 9 */ /* Chrome, Safari, Opera */
+  transform: translateZ(0);
+  transform: scale3d(0, 0, 0);
+}
+.game .gameBoard div img.show {
+  transform: scale3d(1, 1, 1);
 }
 .game .gameBoard > div:nth-child(2),
 .game .gameBoard > div:nth-child(1),

@@ -146,8 +146,14 @@ const GameBoard = (function () {
 
     if (player_turn === "cross") {
       square.appendChild(crossIcon);
+      setTimeout(() => {
+        crossIcon.classList.add("show");
+      }, 50);
     } else if (player_turn === "donut") {
       square.appendChild(donutIcon);
+      setTimeout(() => {
+        donutIcon.classList.add("show");
+      }, 50);
     }
   };
 

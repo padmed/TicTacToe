@@ -240,9 +240,20 @@ h2 {
 
     div {
       background-color: rgba($color: base.$purple, $alpha: 0.6);
+      cursor: pointer;
 
       img {
         width: 95px;
+        transition: 0.2s;
+        -webkit-backface-visibility: hidden;
+        -ms-transform: translateZ(0); /* IE 9 */
+        -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+        transform: translateZ(0);
+        transform: scale3d(0, 0, 0);
+      }
+
+      img.show {
+        transform: scale3d(1, 1, 1);
       }
     }
   }
