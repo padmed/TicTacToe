@@ -80,6 +80,7 @@ const Bot = function () {
 const GameBoard = (function () {
   let player = Player();
   let opponent = null;
+  let player_turn = "cross";
   let gameBoard = [null, null, null, null, null, null, null, null, null];
 
   const setOpponent = function (newOpponent) {
@@ -118,12 +119,30 @@ const GameBoard = (function () {
     }
   };
 
+  const makeMove = function (squareIndex) {
+    if (gameBoard[squareIndex] === null) {
+      const playerShape = player.getPlayerShape();
+      const opponentShape = opponent.getPlayerShape();
+
+      if (playerShape === player_turn) {
+        gameBoard[squareIndex] = playerShape;
+        player_turn = opponentShape;
+      } else if (opponentShape === player_turn) {
+        gameBoard[squareIndex] = opponentShape;
+        player_turn = playerShape;
+      }
+    }
+
+    console.log(gameBoard);
+  };
+
   return {
     setOpponent,
     getRandomPlayer,
     getOpponent,
     getPlayer,
     setPlayerShapes,
+    makeMove,
   };
 })();
 
@@ -376,7 +395,8 @@ const displayController = (function () {
     screen.classList.add("gameScreen");
 
     board.addEventListener("click", (e) => {
-      console.log(e.target.id);
+      const squareIndex = e.target.id;
+      GameBoard.makeMove(squareIndex);
     });
   };
 
