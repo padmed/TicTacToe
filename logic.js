@@ -411,9 +411,28 @@ const displayController = (function () {
     }
   };
 
+  const wrtPlayerInfo = function () {
+    const playerName = document.querySelector("#playerName");
+    const opponentName = document.querySelector("#opponentName");
+    const playerShape = document.querySelector("#playerShape");
+    const opponentShape = document.querySelector("#opponentShape");
+
+    playerName.textContent = player.getPlayerName();
+    opponentName.textContent = opponent.getPlayerName();
+
+    if (player.getPlayerShape() === "cross") {
+      playerShape.src = "./icons/cross.svg";
+      opponentShape.src = "./icons/donut.svg";
+    } else {
+      playerShape.src = "./icons/donut.svg";
+      opponentShape.src = "./icons/cross.svg";
+    }
+  };
+
   const playGame = function () {
     const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
+    wrtPlayerInfo();
 
     board.addEventListener("click", (e) => {
       const squareIndex = e.target.id;
