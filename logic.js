@@ -120,6 +120,10 @@ const GameBoard = (function () {
     }
   };
 
+  const getRoundScore = function () {
+    return round;
+  };
+
   const makeMove = function (squareIndex) {
     if (gameBoard[squareIndex] === null) {
       const playerShape = player.getPlayerShape();
@@ -172,11 +176,13 @@ const GameBoard = (function () {
         gameBoard[a] === gameBoard[c]
       ) {
         givePlayerScore([gameBoard[a]][0]);
+        round++;
         return [gameBoard[a]][0];
       }
     }
 
     if (checkTie) {
+      round++;
       return "tie";
     }
   };
@@ -215,6 +221,7 @@ const GameBoard = (function () {
     makeMove,
     getBoard,
     checkWin,
+    getRoundScore,
   };
 })();
 
