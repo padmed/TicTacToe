@@ -239,7 +239,8 @@ h2 {
   width: fit-content;
   height: 150px;
   font-size: 20px;
-  border: 2px dashed #edd174;
+  border: 3px dashed #edd174;
+  transition: background-color 300ms linear;
 }
 .game .player1-info img,
 .game .player2-info img {
@@ -249,7 +250,8 @@ h2 {
 .game .player2-info.active {
   background-color: #edd174;
   color: #4e31aa;
-  border: 4px solid #4e31aa;
+  border: 3px solid #4e31aa;
+  box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.3);
 }
 .game .player1-info.active .win,
 .game .player2-info.active .win {

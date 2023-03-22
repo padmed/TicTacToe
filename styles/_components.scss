@@ -220,7 +220,8 @@ h2 {
     width: fit-content;
     height: 150px;
     font-size: 20px;
-    border: 2px dashed base.$yellow;
+    border: 3px dashed base.$yellow;
+    transition: background-color 300ms linear;
 
     img {
       width: 20px;
@@ -231,7 +232,8 @@ h2 {
   .player2-info.active {
     background-color: base.$yellow;
     color: base.$purple;
-    border: 4px solid base.$purple;
+    border: 3px solid base.$purple;
+    box-shadow: 0 0 30px 10px rgba($color: white, $alpha: 0.3);
 
     .win {
       background-color: base.$purple;
