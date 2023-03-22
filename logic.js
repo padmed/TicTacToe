@@ -81,6 +81,7 @@ const GameBoard = (function () {
   let player = Player();
   let opponent = null;
   let player_turn = "cross";
+  let round = 0;
   let gameBoard = [null, null, null, null, null, null, null, null, null];
 
   const setOpponent = function (newOpponent) {
@@ -134,8 +135,14 @@ const GameBoard = (function () {
         player_turn = playerShape;
       }
     }
+  };
 
-    console.log(checkWin());
+  const givePlayerScore = function (shape) {
+    if (player.getPlayerShape() === shape) {
+      player.incrementScore();
+    } else if (opponent.getPlayerShape()) {
+      opponent.incrementScore();
+    }
   };
 
   const checkWin = function () {
@@ -164,12 +171,13 @@ const GameBoard = (function () {
         gameBoard[a] === gameBoard[b] &&
         gameBoard[a] === gameBoard[c]
       ) {
-        return [gameBoard[a]];
+        givePlayerScore([gameBoard[a]][0]);
+        return [gameBoard[a]][0];
       }
     }
 
     if (checkTie) {
-      console.log("tie");
+      return "tie";
     }
   };
 
@@ -497,6 +505,7 @@ const displayController = (function () {
 
       showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
+      console.log(GameBoard.checkWin());
     });
   };
 
