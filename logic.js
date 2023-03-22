@@ -417,6 +417,8 @@ const displayController = (function () {
   };
 
   const wrtPlayerInfo = function () {
+    const playerInfo = document.querySelector(".player1-info");
+    const opponentInfo = document.querySelector(".player2-info");
     const playerName = document.querySelector("#playerName");
     const opponentName = document.querySelector("#opponentName");
     const playerShape = document.querySelector("#playerShape");
@@ -426,11 +428,24 @@ const displayController = (function () {
     opponentName.textContent = opponent.getPlayerName();
 
     if (player.getPlayerShape() === "cross") {
+      playerInfo.classList.add("active");
       playerShape.src = "./icons/cross.svg";
       opponentShape.src = "./icons/donut.svg";
     } else {
+      opponentInfo.classList.add("active");
       playerShape.src = "./icons/donut.svg";
       opponentShape.src = "./icons/cross.svg";
+    }
+  };
+
+  const showActivePlayer = function (squareIndex) {
+    const board = GameBoard.getBoard();
+    const playerInfo = document.querySelector(".player1-info");
+    const opponentInfo = document.querySelector(".player2-info");
+
+    if (board[squareIndex] === null) {
+      playerInfo.classList.toggle("active");
+      opponentInfo.classList.toggle("active");
     }
   };
 
@@ -441,6 +456,8 @@ const displayController = (function () {
 
     board.addEventListener("click", (e) => {
       const squareIndex = e.target.id;
+
+      showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
     });
   };
