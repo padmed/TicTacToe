@@ -134,9 +134,14 @@ const GameBoard = (function () {
         player_turn = playerShape;
       }
     }
+
+    console.log(checkWin());
   };
 
   const checkWin = function () {
+    const checkTie = gameBoard.every((square) => {
+      return square !== null;
+    });
     const winningCombinations = [
       // horizontal
       [0, 1, 2],
@@ -161,6 +166,10 @@ const GameBoard = (function () {
       ) {
         return [gameBoard[a]];
       }
+    }
+
+    if (checkTie) {
+      console.log("tie");
     }
   };
 
