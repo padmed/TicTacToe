@@ -292,6 +292,11 @@ h2 {
   }
 }
 
+.gameScreen .gameBoard > .gameSquare > img.active {
+  transform: scale(1) rotate(360deg);
+  transition: 0.3s;
+}
+
 .wins {
   .win {
     height: 7px;

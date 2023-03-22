@@ -177,7 +177,7 @@ const GameBoard = (function () {
       ) {
         givePlayerScore([gameBoard[a]][0]);
         round++;
-        return [gameBoard[a]][0];
+        return { shape: gameBoard[a], winCombo: [a, b, c] };
       }
     }
 
@@ -507,11 +507,23 @@ const displayController = (function () {
     const winner = GameBoard.checkWin();
 
     if (winner) {
+      const [a, b, c] = winner.winCombo;
+      const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
+      const winShapeB = document.querySelector(`[id="${b}"]`).children[0];
+      const winShapeC = document.querySelector(`[id="${c}"]`).children[0];
+
       if (winner === player.getPlayerShape()) {
         roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
       } else {
         roundHeader.textContent = `${opponent.getPlayerName()} GETS A SCORE`;
       }
+
+      setTimeout(() => {
+        [winShapeA, winShapeB, winShapeC].forEach((shape) => {
+          console.log(shape);
+          shape.classList.add("active");
+        });
+      }, 150);
     }
   };
 
