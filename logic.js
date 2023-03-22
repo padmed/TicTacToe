@@ -157,6 +157,10 @@ const GameBoard = (function () {
     }
   };
 
+  const getBoard = function () {
+    return gameBoard;
+  };
+
   return {
     setOpponent,
     getRandomPlayer,
@@ -164,6 +168,7 @@ const GameBoard = (function () {
     getPlayer,
     setPlayerShapes,
     makeMove,
+    getBoard,
   };
 })();
 
