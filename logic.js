@@ -502,6 +502,19 @@ const displayController = (function () {
     }
   };
 
+  const showRoundWinner = function () {
+    const roundHeader = document.querySelector(".roundHeader");
+    const winner = GameBoard.checkWin();
+
+    if (winner) {
+      if (winner === player.getPlayerShape()) {
+        roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
+      } else {
+        roundHeader.textContent = `${opponent.getPlayerName()} GETS A SCORE`;
+      }
+    }
+  };
+
   const playGame = function () {
     const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
@@ -512,7 +525,7 @@ const displayController = (function () {
 
       showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
-      console.log(GameBoard.checkWin());
+      showRoundWinner();
     });
   };
 
