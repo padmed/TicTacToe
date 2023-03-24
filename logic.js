@@ -560,18 +560,29 @@ const displayController = (function () {
     }
   };
 
+  const disableGameBoard = function () {
+    if (GameBoard.getRoundWinState()) {
+      const board = document.querySelector(".gameBoard");
+
+      board.removeEventListener("click", gameEventHandler);
+    }
+  };
+
+  const gameEventHandler = function (e) {
+    const squareIndex = e.target.id;
+
+    showActivePlayer(squareIndex);
+    GameBoard.makeMove(squareIndex);
+    showRoundWinner();
+    disableGameBoard();
+  };
+
   const playGame = function () {
     const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
     wrtPlayerInfo();
 
-    board.addEventListener("click", (e) => {
-      const squareIndex = e.target.id;
-
-      showActivePlayer(squareIndex);
-      GameBoard.makeMove(squareIndex);
-      showRoundWinner();
-    });
+    board.addEventListener("click", gameEventHandler);
   };
 
   return {
