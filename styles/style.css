@@ -311,6 +311,14 @@ h2 {
   border-radius: 50px;
   background-color: #edd174;
 }
+.wins .win.score {
+  background-color: transparent;
+  transition: 0.3s;
+  transform: scale(1);
+}
+.wins .win.score img {
+  width: 10px;
+}
 
 @media only screen and (min-width: 800px) {
   .tictactoe .letter img {
@@ -559,6 +567,14 @@ body .opponents .opponent:last-child {
 .game .wins {
   display: flex;
   gap: 7px;
+}
+.game .wins .win {
+  position: relative;
+}
+.game .wins .win > img {
+  position: absolute;
+  left: 0;
+  top: -2px;
 }
 
 @media only screen and (min-width: 800px) {

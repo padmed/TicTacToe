@@ -200,6 +200,15 @@ body {
   .wins {
     display: flex;
     gap: 7px;
+
+    .win {
+      position: relative;
+    }
+    .win > img {
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
   }
 }
 

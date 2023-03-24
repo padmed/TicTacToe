@@ -83,6 +83,7 @@ const GameBoard = (function () {
   let player_turn = "cross";
   let round = 0;
   let gameBoard = [null, null, null, null, null, null, null, null, null];
+  let roundWinner = false;
 
   const setOpponent = function (newOpponent) {
     opponent = newOpponent;
@@ -180,14 +181,20 @@ const GameBoard = (function () {
       ) {
         givePlayerScore([gameBoard[a]][0]);
         round++;
+        roundWinner = true;
         return { shape: gameBoard[a], winCombo: [a, b, c] };
       }
     }
 
     if (checkTie) {
       round++;
+      roundWinner = true;
       return "tie";
     }
+  };
+
+  const getRoundWinState = function () {
+    return roundWinner;
   };
 
   const renderShape = function (squareIndex) {
@@ -225,6 +232,7 @@ const GameBoard = (function () {
     getBoard,
     checkWin,
     getRoundScore,
+    getRoundWinState,
   };
 })();
 
@@ -526,6 +534,29 @@ const displayController = (function () {
           shape.classList.add("active");
         });
       }, 150);
+
+      showPlayerScores(winner.shape);
+    }
+  };
+
+  const showPlayerScores = function (winnerShape) {
+    const playerInfo = document.querySelector(".player1-info");
+    const opponentInfo = document.querySelector(".player2-info");
+    let shape = document.createElement("img");
+
+    if (
+      GameBoard.getRoundScore() >= player.getScore() ||
+      GameBoard.getRoundScore() >= opponent.getScore()
+    ) {
+      if (player.getPlayerShape() === winnerShape) {
+        const playerScore = player.getScore();
+        const playerScores = playerInfo.querySelectorAll(".win");
+        shape.src = `./icons/${winnerShape}.svg`;
+
+        playerScores[playerScore - 1].appendChild(shape);
+        playerScores[playerScore - 1].classList.add("score");
+        console.log(playerScore);
+      }
     }
   };
 
