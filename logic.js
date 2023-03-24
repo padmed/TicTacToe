@@ -148,7 +148,7 @@ const GameBoard = (function () {
   const givePlayerScore = function (shape) {
     if (player.getPlayerShape() === shape) {
       player.incrementScore();
-    } else if (opponent.getPlayerShape()) {
+    } else if (opponent.getPlayerShape() === shape) {
       opponent.incrementScore();
     }
   };
@@ -543,20 +543,20 @@ const displayController = (function () {
     const playerInfo = document.querySelector(".player1-info");
     const opponentInfo = document.querySelector(".player2-info");
     let shape = document.createElement("img");
+    shape.src = `./icons/${winnerShape}.svg`;
 
-    if (
-      GameBoard.getRoundScore() >= player.getScore() ||
-      GameBoard.getRoundScore() >= opponent.getScore()
-    ) {
-      if (player.getPlayerShape() === winnerShape) {
-        const playerScore = player.getScore();
-        const playerScores = playerInfo.querySelectorAll(".win");
-        shape.src = `./icons/${winnerShape}.svg`;
+    if (player.getPlayerShape() === winnerShape) {
+      const playerScore = player.getScore();
+      const playerScores = playerInfo.querySelectorAll(".win");
 
-        playerScores[playerScore - 1].appendChild(shape);
-        playerScores[playerScore - 1].classList.add("score");
-        console.log(playerScore);
-      }
+      playerScores[playerScore - 1].appendChild(shape);
+      playerScores[playerScore - 1].classList.add("score");
+    } else if (opponent.getPlayerShape() === winnerShape) {
+      const opponentScore = opponent.getScore();
+      const opponentScores = opponentInfo.querySelectorAll(".win");
+
+      opponentScores[opponentScore - 1].appendChild(shape);
+      opponentScores[opponentScore - 1].classList.add("score");
     }
   };
 
@@ -573,8 +573,8 @@ const displayController = (function () {
 
     showActivePlayer(squareIndex);
     GameBoard.makeMove(squareIndex);
-    showRoundWinner();
-    disableGameBoard();
+    showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
+    disableGameBoard(); //disables gameboard if there's a round winner
   };
 
   const playGame = function () {
