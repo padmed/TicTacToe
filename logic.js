@@ -32,7 +32,7 @@ const Player = function () {
   };
 
   const incrementScore = function () {
-    ++score;
+    score++;
   };
 
   return {
@@ -108,14 +108,17 @@ const GameBoard = (function () {
       if (shape === "cross") {
         player.setPlayerShape("cross");
         opponent.setPlayerShape("donut");
-      } else {
+      } else if (shape === "donut") {
         player.setPlayerShape("donut");
         opponent.setPlayerShape("cross");
       }
-    } else {
+    } else if (opponent.checkShapePicker) {
       if (shape === "cross") {
         player.setPlayerShape("donut");
         opponent.setPlayerShape("cross");
+      } else if (shape === "donut") {
+        player.setPlayerShape("cross");
+        opponent.setPlayerShape("donut");
       }
     }
   };
@@ -512,15 +515,14 @@ const displayController = (function () {
       const winShapeB = document.querySelector(`[id="${b}"]`).children[0];
       const winShapeC = document.querySelector(`[id="${c}"]`).children[0];
 
-      if (winner === player.getPlayerShape()) {
+      if (winner.shape === player.getPlayerShape()) {
         roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
-      } else {
+      } else if (winner.shape === opponent.getPlayerShape()) {
         roundHeader.textContent = `${opponent.getPlayerName()} GETS A SCORE`;
       }
 
       setTimeout(() => {
         [winShapeA, winShapeB, winShapeC].forEach((shape) => {
-          console.log(shape);
           shape.classList.add("active");
         });
       }, 150);
