@@ -223,8 +223,9 @@ h2 {
     border: 3px dashed base.$yellow;
     transition: background-color 300ms linear;
 
-    img {
-      width: 20px;
+    #playerShape,
+    #opponentShape {
+      width: 25px;
     }
   }
 
@@ -304,15 +305,31 @@ h2 {
     width: 7px;
     border-radius: 50px;
     background-color: base.$yellow;
+    -webkit-backface-visibility: hidden;
+    -ms-transform: translateZ(0); /* IE 9 */
+    -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+    transform: translateZ(0) scale3d(1, 1, 1);
+    transition: 0.2s;
+
+    img {
+      width: 10px;
+      -webkit-backface-visibility: hidden;
+      -ms-transform: translateZ(0); /* IE 9 */
+      -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+      transform: translateZ(0) scale3d(0, 0, 0);
+    }
+  }
+
+  .win.dissapear {
+    transform: translateZ(0) scale3d(0, 0, 0);
   }
 
   .win.score {
     background-color: transparent;
-    transition: 0.3s;
-    transform: scale(1);
+    transform: translateZ(0) scale3d(1, 1, 1);
 
     img {
-      width: 10px;
+      transform: translateZ(0) scale3d(1, 1, 1);
     }
   }
 }
@@ -346,10 +363,6 @@ h2 {
   .game > .player1-info,
   .game > .player2-info {
     font-size: 25px;
-
-    img {
-      width: 25px;
-    }
   }
 }
 

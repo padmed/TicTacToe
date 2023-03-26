@@ -548,15 +548,29 @@ const displayController = (function () {
     if (player.getPlayerShape() === winnerShape) {
       const playerScore = player.getScore();
       const playerScores = playerInfo.querySelectorAll(".win");
+      const scoreContainer = playerScores[playerScore - 1];
 
-      playerScores[playerScore - 1].appendChild(shape);
-      playerScores[playerScore - 1].classList.add("score");
+      scoreContainer.appendChild(shape);
+      setTimeout(() => {
+        scoreContainer.classList.add("dissapear");
+      }, 300);
+      setTimeout(() => {
+        scoreContainer.classList.remove("dissapear");
+        scoreContainer.classList.add("score");
+      }, 600);
     } else if (opponent.getPlayerShape() === winnerShape) {
       const opponentScore = opponent.getScore();
       const opponentScores = opponentInfo.querySelectorAll(".win");
+      const scoreContainer = opponentScores[opponentScore - 1];
 
-      opponentScores[opponentScore - 1].appendChild(shape);
-      opponentScores[opponentScore - 1].classList.add("score");
+      scoreContainer.appendChild(shape);
+      setTimeout(() => {
+        scoreContainer.classList.add("dissapear");
+      }, 300);
+      setTimeout(() => {
+        scoreContainer.classList.remove("dissapear");
+        scoreContainer.classList.add("score");
+      }, 600);
     }
   };
 
