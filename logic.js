@@ -76,83 +76,83 @@ const Bot = function () {
 };
 
 const GameBoard = (function () {
-  let player = Player();
-  let opponent = null;
-  let player_turn = "cross";
-  let round = 1;
-  let gameBoard = [null, null, null, null, null, null, null, null, null];
-  let roundWinner = false;
+  let _player = Player();
+  let _opponent = null;
+  let _player_turn = "cross";
+  let _round = 1;
+  let _gameBoard = [null, null, null, null, null, null, null, null, null];
+  let _roundWinner = false;
 
   const setOpponent = function (newOpponent) {
-    opponent = newOpponent;
+    _opponent = newOpponent;
   };
 
   const getOpponent = function () {
-    return opponent;
+    return _opponent;
   };
 
   const getPlayer = function () {
-    return player;
+    return _player;
   };
 
   const getRandomPlayer = function () {
-    const bothPlayers = [player, opponent];
+    const bothPlayers = [_player, _opponent];
     const randomIndex = Math.floor(Math.random() * 2);
 
     return bothPlayers[randomIndex];
   };
 
   const setPlayerShapes = function (shape) {
-    if (player.checkShapePicker()) {
+    if (_player.checkShapePicker()) {
       if (shape === "cross") {
-        player.setPlayerShape("cross");
-        opponent.setPlayerShape("donut");
+        _player.setPlayerShape("cross");
+        _opponent.setPlayerShape("donut");
       } else if (shape === "donut") {
-        player.setPlayerShape("donut");
-        opponent.setPlayerShape("cross");
+        _player.setPlayerShape("donut");
+        _opponent.setPlayerShape("cross");
       }
-    } else if (opponent.checkShapePicker) {
+    } else if (_opponent.checkShapePicker) {
       if (shape === "cross") {
-        player.setPlayerShape("donut");
-        opponent.setPlayerShape("cross");
+        _player.setPlayerShape("donut");
+        _opponent.setPlayerShape("cross");
       } else if (shape === "donut") {
-        player.setPlayerShape("cross");
-        opponent.setPlayerShape("donut");
+        _player.setPlayerShape("cross");
+        _opponent.setPlayerShape("donut");
       }
     }
   };
 
   const getRoundScore = function () {
-    return round;
+    return _round;
   };
 
   const makeMove = function (squareIndex) {
-    if (gameBoard[squareIndex] === null) {
-      const playerShape = player.getPlayerShape();
-      const opponentShape = opponent.getPlayerShape();
+    if (_gameBoard[squareIndex] === null) {
+      const playerShape = _player.getPlayerShape();
+      const opponentShape = _opponent.getPlayerShape();
 
-      if (playerShape === player_turn) {
-        gameBoard[squareIndex] = playerShape;
-        renderShape(squareIndex);
-        player_turn = opponentShape;
-      } else if (opponentShape === player_turn) {
-        gameBoard[squareIndex] = opponentShape;
-        renderShape(squareIndex);
-        player_turn = playerShape;
+      if (playerShape === _player_turn) {
+        _gameBoard[squareIndex] = playerShape;
+        _renderShape(squareIndex);
+        _player_turn = opponentShape;
+      } else if (opponentShape === _player_turn) {
+        _gameBoard[squareIndex] = opponentShape;
+        _renderShape(squareIndex);
+        _player_turn = playerShape;
       }
     }
   };
 
-  const givePlayerScore = function (shape) {
-    if (player.getPlayerShape() === shape) {
-      player.incrementScore();
-    } else if (opponent.getPlayerShape() === shape) {
-      opponent.incrementScore();
+  const _givePlayerScore = function (shape) {
+    if (_player.getPlayerShape() === shape) {
+      _player.incrementScore();
+    } else if (_opponent.getPlayerShape() === shape) {
+      _opponent.incrementScore();
     }
   };
 
   const checkWin = function () {
-    const checkTie = gameBoard.every((square) => {
+    const checkTie = _gameBoard.every((square) => {
       return square !== null;
     });
     const winningCombinations = [
@@ -173,34 +173,34 @@ const GameBoard = (function () {
       const [a, b, c] = winningCombinations[i];
 
       if (
-        gameBoard[a] !== null &&
-        gameBoard[a] === gameBoard[b] &&
-        gameBoard[a] === gameBoard[c]
+        _gameBoard[a] !== null &&
+        _gameBoard[a] === _gameBoard[b] &&
+        _gameBoard[a] === _gameBoard[c]
       ) {
-        givePlayerScore([gameBoard[a]][0]);
-        round++;
-        roundWinner = true;
-        return { shape: gameBoard[a], winCombo: [a, b, c] };
+        _givePlayerScore([_gameBoard[a]][0]);
+        _round++;
+        _roundWinner = true;
+        return { shape: _gameBoard[a], winCombo: [a, b, c] };
       }
     }
 
     if (checkTie) {
-      round++;
-      roundWinner = true;
+      _round++;
+      _roundWinner = true;
       return "tie";
     }
   };
 
   const getRoundWinState = function () {
-    return roundWinner;
+    return _roundWinner;
   };
 
   const resetRound = function () {
-    roundWinner = false;
-    gameBoard = [null, null, null, null, null, null, null, null, null];
+    _roundWinner = false;
+    _gameBoard = [null, null, null, null, null, null, null, null, null];
   };
 
-  const renderShape = function (squareIndex) {
+  const _renderShape = function (squareIndex) {
     const square = document.getElementById(squareIndex);
     const crossIcon = document.createElement("img");
     const donutIcon = document.createElement("img");
@@ -208,12 +208,12 @@ const GameBoard = (function () {
     crossIcon.src = "./icons/cross.svg";
     donutIcon.src = "./icons/donut.svg";
 
-    if (player_turn === "cross") {
+    if (_player_turn === "cross") {
       square.appendChild(crossIcon);
       setTimeout(() => {
         crossIcon.classList.add("show");
       }, 50);
-    } else if (player_turn === "donut") {
+    } else if (_player_turn === "donut") {
       square.appendChild(donutIcon);
       setTimeout(() => {
         donutIcon.classList.add("show");
@@ -222,7 +222,7 @@ const GameBoard = (function () {
   };
 
   const getBoard = function () {
-    return gameBoard;
+    return _gameBoard;
   };
 
   return {
