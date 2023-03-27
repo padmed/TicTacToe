@@ -197,6 +197,11 @@ const GameBoard = (function () {
     return roundWinner;
   };
 
+  const resetRound = function () {
+    roundWinner = false;
+    gameBoard = [null, null, null, null, null, null, null, null, null];
+  };
+
   const renderShape = function (squareIndex) {
     const square = document.getElementById(squareIndex);
     const crossIcon = document.createElement("img");
@@ -233,6 +238,7 @@ const GameBoard = (function () {
     checkWin,
     getRoundScore,
     getRoundWinState,
+    resetRound,
   };
 })();
 
@@ -578,6 +584,7 @@ const displayController = (function () {
   const disableGameBoard = function () {
     if (GameBoard.getRoundWinState()) {
       roundActive = false;
+      playNextRound();
     }
   };
 
@@ -590,6 +597,26 @@ const displayController = (function () {
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
     }
+  };
+
+  const playNextRound = function () {
+    const boardSquares = document.querySelectorAll(".gameSquare");
+
+    boardSquares.forEach((square) => {
+      const playedShape = square.querySelector("img");
+
+      if (playedShape) {
+        setTimeout(() => {
+          playedShape.classList.remove("show");
+          playedShape.classList.remove("active");
+        }, 1000);
+        setTimeout(() => {
+          playedShape.remove();
+          roundActive = true;
+          GameBoard.resetRound();
+        }, 1300);
+      }
+    });
   };
 
   const playGame = function () {
