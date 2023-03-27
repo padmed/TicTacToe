@@ -48,29 +48,27 @@ const Player = function () {
 };
 
 const Bot = function () {
-  const bot = Player();
-  let difficulity = null;
-
-  const player = Player();
+  const _bot = Player();
+  let _difficulity = null;
 
   const setDifficulity = function (difficulityLevel) {
-    difficulity = difficulityLevel;
+    _difficulity = difficulityLevel;
   };
 
   const getDifficulity = function () {
-    return difficulity;
+    return _difficulity;
   };
 
   const letBotChooseShape = function () {
     const shapes = ["cross", "donut"];
     const randomIndex = Math.floor(Math.random() * 2);
 
-    player.setPlayerShape(shapes[randomIndex]);
+    _bot.setPlayerShape(shapes[randomIndex]);
 
     return shapes[randomIndex];
   };
 
-  return Object.assign(player, bot, {
+  return Object.assign(_bot, {
     setDifficulity,
     getDifficulity,
     letBotChooseShape,
@@ -650,4 +648,4 @@ const DisplayController = (function () {
   };
 })();
 
-displayController.startGame();
+DisplayController.startGame();
