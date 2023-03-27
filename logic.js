@@ -1,38 +1,38 @@
 const Player = function () {
-  let playerName = null;
-  let shape = null;
-  let score = 0;
-  let picksShape = false;
+  let _playerName = null;
+  let _shape = null;
+  let _score = 0;
+  let _picksShape = false;
 
   const setPlayerName = function (name) {
-    playerName = name;
+    _playerName = name;
   };
   const getPlayerName = function () {
-    return playerName;
+    return _playerName;
   };
 
   const checkShapePicker = function () {
-    return picksShape;
+    return _picksShape;
   };
 
   const letPickShape = function () {
-    picksShape = true;
+    _picksShape = true;
   };
 
   const getPlayerShape = function () {
-    return shape;
+    return _shape;
   };
 
   const setPlayerShape = function (newShape) {
-    shape = newShape;
+    _shape = newShape;
   };
 
   const getScore = function () {
-    return score;
+    return _score;
   };
 
   const incrementScore = function () {
-    score++;
+    _score++;
   };
 
   return {
@@ -283,7 +283,7 @@ const TouchButton = (function () {
   };
 })();
 
-const displayController = (function () {
+const DisplayController = (function () {
   const screen = document.body;
   const startGameButton = document.querySelector("#start");
   const opponentButtons = document.querySelectorAll(".opponent");
