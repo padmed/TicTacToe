@@ -81,7 +81,7 @@ const GameBoard = (function () {
   let player = Player();
   let opponent = null;
   let player_turn = "cross";
-  let round = 0;
+  let round = 1;
   let gameBoard = [null, null, null, null, null, null, null, null, null];
   let roundWinner = false;
 
@@ -532,13 +532,17 @@ const displayController = (function () {
 
       if (winner.shape === player.getPlayerShape()) {
         roundHeader.classList.add("dissapear");
+        setTimeout(() => {
+          roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
+          roundHeader.classList.remove("dissapear");
+        }, 600);
       } else if (winner.shape === opponent.getPlayerShape()) {
         roundHeader.classList.add("dissapear");
+        setTimeout(() => {
+          roundHeader.textContent = `${opponent.getPlayerName()} GETS A SCORE`;
+          roundHeader.classList.remove("dissapear");
+        }, 600);
       }
-      setTimeout(() => {
-        roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
-        roundHeader.classList.remove("dissapear");
-      }, 600);
 
       setTimeout(() => {
         roundHeader.classList.add("dissapear");
@@ -604,9 +608,13 @@ const displayController = (function () {
       GameBoard.makeMove(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
-      console.log(player.getScore());
-      console.log(opponent.getScore());
     }
+  };
+
+  const showRoundNumber = function () {
+    const roundHeader = document.querySelector(".roundHeader");
+    roundHeader.classList.remove("dissapear");
+    roundHeader.textContent = `Round ${GameBoard.getRoundScore()}`;
   };
 
   const playNextRound = function () {
@@ -624,6 +632,7 @@ const displayController = (function () {
           playedShape.remove();
           roundActive = true;
           GameBoard.resetRound();
+          showRoundNumber();
         }, 2800);
       }
     });
