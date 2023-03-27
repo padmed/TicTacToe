@@ -334,6 +334,12 @@ h2 {
   }
 }
 
+.playerInfo.active {
+  .win.score {
+    background-color: transparent;
+  }
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe .letter {
     img {
