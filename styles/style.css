@@ -230,6 +230,12 @@ h2 {
   height: 100%;
   width: 100%;
 }
+.game .roundHeader {
+  transition: 0.2s;
+}
+.game .roundHeader.dissapear {
+  transform: scale(0);
+}
 .game .player1-info,
 .game .player2-info {
   background-color: rgba(78, 49, 170, 0.6);

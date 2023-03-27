@@ -531,10 +531,18 @@ const displayController = (function () {
       const winShapeC = document.querySelector(`[id="${c}"]`).children[0];
 
       if (winner.shape === player.getPlayerShape()) {
-        roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
+        roundHeader.classList.add("dissapear");
       } else if (winner.shape === opponent.getPlayerShape()) {
-        roundHeader.textContent = `${opponent.getPlayerName()} GETS A SCORE`;
+        roundHeader.classList.add("dissapear");
       }
+      setTimeout(() => {
+        roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
+        roundHeader.classList.remove("dissapear");
+      }, 600);
+
+      setTimeout(() => {
+        roundHeader.classList.add("dissapear");
+      }, 2500);
 
       setTimeout(() => {
         [winShapeA, winShapeB, winShapeC].forEach((shape) => {
@@ -596,6 +604,8 @@ const displayController = (function () {
       GameBoard.makeMove(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
+      console.log(player.getScore());
+      console.log(opponent.getScore());
     }
   };
 
@@ -609,12 +619,12 @@ const displayController = (function () {
         setTimeout(() => {
           playedShape.classList.remove("show");
           playedShape.classList.remove("active");
-        }, 1000);
+        }, 2500);
         setTimeout(() => {
           playedShape.remove();
           roundActive = true;
           GameBoard.resetRound();
-        }, 1300);
+        }, 2800);
       }
     });
   };

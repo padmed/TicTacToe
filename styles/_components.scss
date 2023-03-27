@@ -212,6 +212,14 @@ h2 {
   height: 100%;
   width: 100%;
 
+  .roundHeader {
+    transition: 0.2s;
+  }
+
+  .roundHeader.dissapear {
+    transform: scale(0);
+  }
+
   .player1-info,
   .player2-info {
     background-color: rgba($color: base.$purple, $alpha: 0.6);
