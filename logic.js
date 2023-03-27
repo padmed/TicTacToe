@@ -282,6 +282,7 @@ const displayController = (function () {
   const startGameButton = document.querySelector("#start");
   const opponentButtons = document.querySelectorAll(".opponent");
   const difficulityButtons = document.querySelectorAll(".difficulity");
+  let roundActive = true;
   let player = GameBoard.getPlayer();
   let opponent;
 
@@ -576,26 +577,25 @@ const displayController = (function () {
 
   const disableGameBoard = function () {
     if (GameBoard.getRoundWinState()) {
-      const board = document.querySelector(".gameBoard");
-
-      board.removeEventListener("click", gameEventHandler);
+      roundActive = false;
     }
   };
 
   const gameEventHandler = function (e) {
-    const squareIndex = e.target.id;
+    if (roundActive) {
+      const squareIndex = e.target.id;
 
-    showActivePlayer(squareIndex);
-    GameBoard.makeMove(squareIndex);
-    showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
-    disableGameBoard(); //disables gameboard if there's a round winner
+      showActivePlayer(squareIndex);
+      GameBoard.makeMove(squareIndex);
+      showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
+      disableGameBoard(); //disables gameboard if there's a round winner
+    }
   };
 
   const playGame = function () {
     const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
     wrtPlayerInfo();
-
     board.addEventListener("click", gameEventHandler);
   };
 
