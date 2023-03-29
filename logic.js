@@ -597,8 +597,8 @@ const DisplayController = (function () {
       }, 600);
     } else if (winnerShape === "tie") {
       const opponentShape = document.createElement("img");
-      shape.src = "./icons/cross.svg";
-      opponentShape.src = "./icons/donut.svg";
+      shape.src = `./icons/${player.getPlayerShape()}.svg`;
+      opponentShape.src = `./icons/${opponent.getPlayerShape()}.svg`;
 
       PLscoreContainer.appendChild(shape);
       OPscoreContainer.appendChild(opponentShape);
