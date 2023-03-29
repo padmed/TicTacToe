@@ -187,6 +187,8 @@ const GameBoard = (function () {
     if (checkTie) {
       _round++;
       _roundWinner = true;
+      _givePlayerScore("cross");
+      _givePlayerScore("donut");
       return "tie";
     }
   };
@@ -528,6 +530,7 @@ const DisplayController = (function () {
         roundHeader.textContent = "IT`S A TIE";
         roundHeader.classList.remove("dissapear");
       }, 600);
+      showPlayerScores("tie");
     } else if (winner) {
       const [a, b, c] = winner.winCombo;
       const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
@@ -565,34 +568,49 @@ const DisplayController = (function () {
   const showPlayerScores = function (winnerShape) {
     const playerInfo = document.querySelector(".player1-info");
     const opponentInfo = document.querySelector(".player2-info");
+    const playerScore = player.getScore();
+    const playerScores = playerInfo.querySelectorAll(".win");
+    const PLscoreContainer = playerScores[playerScore - 1];
+    const opponentScore = opponent.getScore();
+    const opponentScores = opponentInfo.querySelectorAll(".win");
+    const OPscoreContainer = opponentScores[opponentScore - 1];
     let shape = document.createElement("img");
     shape.src = `./icons/${winnerShape}.svg`;
 
     if (player.getPlayerShape() === winnerShape) {
-      const playerScore = player.getScore();
-      const playerScores = playerInfo.querySelectorAll(".win");
-      const scoreContainer = playerScores[playerScore - 1];
-
-      scoreContainer.appendChild(shape);
+      PLscoreContainer.appendChild(shape);
       setTimeout(() => {
-        scoreContainer.classList.add("dissapear");
+        PLscoreContainer.classList.add("dissapear");
       }, 300);
       setTimeout(() => {
-        scoreContainer.classList.remove("dissapear");
-        scoreContainer.classList.add("score");
+        PLscoreContainer.classList.remove("dissapear");
+        PLscoreContainer.classList.add("score");
       }, 600);
     } else if (opponent.getPlayerShape() === winnerShape) {
-      const opponentScore = opponent.getScore();
-      const opponentScores = opponentInfo.querySelectorAll(".win");
-      const scoreContainer = opponentScores[opponentScore - 1];
-
-      scoreContainer.appendChild(shape);
+      OPscoreContainer.appendChild(shape);
       setTimeout(() => {
-        scoreContainer.classList.add("dissapear");
+        OPscoreContainer.classList.add("dissapear");
       }, 300);
       setTimeout(() => {
-        scoreContainer.classList.remove("dissapear");
-        scoreContainer.classList.add("score");
+        OPscoreContainer.classList.remove("dissapear");
+        OPscoreContainer.classList.add("score");
+      }, 600);
+    } else if (winnerShape === "tie") {
+      const opponentShape = document.createElement("img");
+      shape.src = "./icons/cross.svg";
+      opponentShape.src = "./icons/donut.svg";
+
+      PLscoreContainer.appendChild(shape);
+      OPscoreContainer.appendChild(opponentShape);
+      setTimeout(() => {
+        PLscoreContainer.classList.add("dissapear");
+        OPscoreContainer.classList.add("dissapear");
+      }, 300);
+      setTimeout(() => {
+        PLscoreContainer.classList.remove("dissapear");
+        PLscoreContainer.classList.add("score");
+        OPscoreContainer.classList.remove("dissapear");
+        OPscoreContainer.classList.add("score");
       }, 600);
     }
   };
