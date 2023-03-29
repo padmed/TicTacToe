@@ -522,7 +522,13 @@ const DisplayController = (function () {
     const roundHeader = document.querySelector(".roundHeader");
     const winner = GameBoard.checkWin();
 
-    if (winner) {
+    if (winner === "tie") {
+      roundHeader.classList.add("dissapear");
+      setTimeout(() => {
+        roundHeader.textContent = "IT`S A TIE";
+        roundHeader.classList.remove("dissapear");
+      }, 600);
+    } else if (winner) {
       const [a, b, c] = winner.winCombo;
       const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
       const winShapeB = document.querySelector(`[id="${b}"]`).children[0];
