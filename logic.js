@@ -530,7 +530,7 @@ const DisplayController = (function () {
         roundHeader.textContent = "IT`S A TIE";
         roundHeader.classList.remove("dissapear");
       }, 600);
-      showPlayerScores("tie");
+      showBothPlayerScores("tie");
     } else if (winner) {
       const [a, b, c] = winner.winCombo;
       const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
@@ -561,57 +561,62 @@ const DisplayController = (function () {
         });
       }, 150);
 
-      showPlayerScores(winner.shape);
+      showBothPlayerScores(winner.shape);
     }
   };
 
-  const showPlayerScores = function (winnerShape) {
+  const showPlayerScore = function () {
+    const shape = document.createElement("img");
+    shape.src = `./icons/${player.getPlayerShape()}.svg`;
+
     const playerInfo = document.querySelector(".player1-info");
-    const opponentInfo = document.querySelector(".player2-info");
-    const playerScore = player.getScore();
-    const playerScores = playerInfo.querySelectorAll(".win");
-    const PLscoreContainer = playerScores[playerScore - 1];
-    const opponentScore = opponent.getScore();
-    const opponentScores = opponentInfo.querySelectorAll(".win");
-    const OPscoreContainer = opponentScores[opponentScore - 1];
+    const playerScoreIndex = player.getScore() - 1;
+
+    const plScores = playerInfo.querySelectorAll(".win");
+    const plScore = plScores[playerScoreIndex];
+
+    plScore.appendChild(shape);
+
+    setTimeout(() => {
+      plScore.classList.add("dissapear");
+    }, 300);
+    setTimeout(() => {
+      plScore.classList.remove("dissapear");
+      plScore.classList.add("score");
+    }, 600);
+  };
+
+  const showOpponentScore = function () {
+    const shape = document.createElement("img");
+    shape.src = `./icons/${opponent.getPlayerShape()}.svg`;
+
+    const playerInfo = document.querySelector(".player2-info");
+    const opponentScoreIndex = opponent.getScore() - 1;
+    const opScores = playerInfo.querySelectorAll(".win");
+
+    const opScore = opScores[opponentScoreIndex];
+    opScore.appendChild(shape);
+    setTimeout(() => {
+      opScore.classList.add("dissapear");
+    }, 300);
+
+    setTimeout(() => {
+      opScore.classList.remove("dissapear");
+      opScore.classList.add("score");
+    }, 600);
+  };
+
+  const showBothPlayerScores = function (winnerShape) {
     let shape = document.createElement("img");
     shape.src = `./icons/${winnerShape}.svg`;
 
     if (player.getPlayerShape() === winnerShape) {
-      PLscoreContainer.appendChild(shape);
-      setTimeout(() => {
-        PLscoreContainer.classList.add("dissapear");
-      }, 300);
-      setTimeout(() => {
-        PLscoreContainer.classList.remove("dissapear");
-        PLscoreContainer.classList.add("score");
-      }, 600);
+      showPlayerScore();
     } else if (opponent.getPlayerShape() === winnerShape) {
-      OPscoreContainer.appendChild(shape);
-      setTimeout(() => {
-        OPscoreContainer.classList.add("dissapear");
-      }, 300);
-      setTimeout(() => {
-        OPscoreContainer.classList.remove("dissapear");
-        OPscoreContainer.classList.add("score");
-      }, 600);
+      showOpponentScore();
     } else if (winnerShape === "tie") {
-      const opponentShape = document.createElement("img");
-      shape.src = `./icons/${player.getPlayerShape()}.svg`;
-      opponentShape.src = `./icons/${opponent.getPlayerShape()}.svg`;
-
-      PLscoreContainer.appendChild(shape);
-      OPscoreContainer.appendChild(opponentShape);
-      setTimeout(() => {
-        PLscoreContainer.classList.add("dissapear");
-        OPscoreContainer.classList.add("dissapear");
-      }, 300);
-      setTimeout(() => {
-        PLscoreContainer.classList.remove("dissapear");
-        PLscoreContainer.classList.add("score");
-        OPscoreContainer.classList.remove("dissapear");
-        OPscoreContainer.classList.add("score");
-      }, 600);
+      showPlayerScore();
+      showOpponentScore();
     }
   };
 
