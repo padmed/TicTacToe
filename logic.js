@@ -638,6 +638,7 @@ const DisplayController = (function () {
       GameBoard.makeMove(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
+      showGameWinner();
     }
   };
 
@@ -666,6 +667,28 @@ const DisplayController = (function () {
         }, 2800);
       }
     });
+  };
+
+  const showGameWinner = function () {
+    let winner;
+
+    if (player.getScore() >= 3 || opponent.getScore() >= 3) {
+      if (player.getScore() >= 3) {
+        winner = player;
+      } else if (opponent.getScore() >= 3) {
+        winner = opponent;
+      }
+    }
+
+    if (winner) {
+      const winnerBackground = document.querySelector(
+        `[data-background="${winner.getPlayerShape()}"]`
+      );
+      winnerBackground.style.display = "block";
+      setTimeout(() => {
+        winnerBackground.classList.add("active");
+      }, 1500);
+    }
   };
 
   const playGame = function () {
