@@ -520,6 +520,19 @@ const DisplayController = (function () {
     }
   };
 
+  const showWinCombo = function (winner) {
+    const [a, b, c] = winner.winCombo;
+    const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
+    const winShapeB = document.querySelector(`[id="${b}"]`).children[0];
+    const winShapeC = document.querySelector(`[id="${c}"]`).children[0];
+
+    setTimeout(() => {
+      [winShapeA, winShapeB, winShapeC].forEach((shape) => {
+        shape.classList.add("active");
+      });
+    }, 150);
+  };
+
   const showRoundWinner = function () {
     const roundHeader = document.querySelector(".roundHeader");
     const winner = GameBoard.checkWin();
@@ -532,11 +545,6 @@ const DisplayController = (function () {
       }, 600);
       showBothPlayerScores("tie");
     } else if (winner) {
-      const [a, b, c] = winner.winCombo;
-      const winShapeA = document.querySelector(`[id="${a}"]`).children[0];
-      const winShapeB = document.querySelector(`[id="${b}"]`).children[0];
-      const winShapeC = document.querySelector(`[id="${c}"]`).children[0];
-
       if (winner.shape === player.getPlayerShape()) {
         roundHeader.classList.add("dissapear");
         setTimeout(() => {
@@ -555,12 +563,7 @@ const DisplayController = (function () {
         roundHeader.classList.add("dissapear");
       }, 2500);
 
-      setTimeout(() => {
-        [winShapeA, winShapeB, winShapeC].forEach((shape) => {
-          shape.classList.add("active");
-        });
-      }, 150);
-
+      showWinCombo(winner);
       showBothPlayerScores(winner.shape);
     }
   };
