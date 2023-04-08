@@ -68,10 +68,21 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
+  const generateBotMove = function () {
+    if (_difficulity === "Easy") {
+      console.log("under development");
+    } else if (_difficulity === "Medium") {
+      console.log("under development");
+    } else if (_difficulity === "Hard") {
+      console.log("miau");
+    }
+  };
+
   return Object.assign(_bot, {
     setDifficulity,
     getDifficulity,
     letBotChooseShape,
+    generateBotMove,
   });
 };
 
@@ -140,6 +151,7 @@ const GameBoard = (function () {
           _opponent.getPlayerName() === "Bot" &&
           opponentShape === _player_turn
         ) {
+          const botChoice = generateBotMove();
           _player_turn = playerShape;
         } else if (opponentShape === _player_turn) {
           _gameBoard[squareIndex] = opponentShape;
