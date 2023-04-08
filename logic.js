@@ -135,10 +135,17 @@ const GameBoard = (function () {
         _gameBoard[squareIndex] = playerShape;
         _renderShape(squareIndex);
         _player_turn = opponentShape;
-      } else if (opponentShape === _player_turn) {
-        _gameBoard[squareIndex] = opponentShape;
-        _renderShape(squareIndex);
-        _player_turn = playerShape;
+      } else {
+        if (
+          _opponent.getPlayerName() === "Bot" &&
+          opponentShape === _player_turn
+        ) {
+          _player_turn = playerShape;
+        } else if (opponentShape === _player_turn) {
+          _gameBoard[squareIndex] = opponentShape;
+          _renderShape(squareIndex);
+          _player_turn = playerShape;
+        }
       }
     }
   };
