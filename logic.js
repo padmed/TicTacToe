@@ -68,13 +68,34 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  const generateBotMove = function () {
+  const bestMove = function (gameBoard) {
+    let bestScore = -Infinity;
+    let bestMove;
+    let boardCopy = [...gameBoard];
+
+    for (let i = 0; i <= gameBoard.length; i++) {
+      if (gameBoard[i] === null) {
+        boardCopy[i] = _bot.getPlayerShape();
+        let score = 1;
+        boardCopy[i] = null;
+
+        if (score > bestScore) {
+          bestScore = score;
+          bestMove = i;
+        }
+      }
+    }
+
+    return bestMove;
+  };
+
+  const generateMove = function (gameBoard) {
     if (_difficulity === "Easy") {
       console.log("under development");
     } else if (_difficulity === "Medium") {
       console.log("under development");
     } else if (_difficulity === "Hard") {
-      console.log("miau");
+      return bestMove(gameBoard);
     }
   };
 
@@ -82,7 +103,7 @@ const Bot = function () {
     setDifficulity,
     getDifficulity,
     letBotChooseShape,
-    generateBotMove,
+    generateMove,
   });
 };
 
@@ -106,6 +127,9 @@ const GameBoard = (function () {
     return _player;
   };
 
+  const getPlayerTurn = function () {
+    return _player_turn;
+  };
   const getRandomPlayer = function () {
     const bothPlayers = [_player, _opponent];
     const randomIndex = Math.floor(Math.random() * 2);
@@ -138,7 +162,7 @@ const GameBoard = (function () {
   };
 
   const makeMove = function (squareIndex) {
-    if (_gameBoard[squareIndex] === null) {
+    if (_gameBoard[squareIndex] === null || squareIndex === null) {
       const playerShape = _player.getPlayerShape();
       const opponentShape = _opponent.getPlayerShape();
 
@@ -151,7 +175,10 @@ const GameBoard = (function () {
           _opponent.getPlayerName() === "Bot" &&
           opponentShape === _player_turn
         ) {
-          const botChoice = generateBotMove();
+          const botChoice = _opponent.generateMove(_gameBoard);
+          _gameBoard[botChoice] = opponentShape;
+          console.log(botChoice);
+          _renderShape(botChoice);
           _player_turn = playerShape;
         } else if (opponentShape === _player_turn) {
           _gameBoard[squareIndex] = opponentShape;
@@ -258,6 +285,7 @@ const GameBoard = (function () {
     getRoundScore,
     getRoundWinState,
     resetRound,
+    getPlayerTurn,
   };
 })();
 
@@ -655,6 +683,7 @@ const DisplayController = (function () {
 
       showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
+      botGameHandler(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
       showGameWinner();
@@ -710,10 +739,25 @@ const DisplayController = (function () {
     }
   };
 
+  const botGameHandler = function () {
+    if (
+      opponent.getPlayerShape() === GameBoard.getPlayerTurn() &&
+      opponent.getPlayerName() === "Bot"
+    ) {
+      roundActive = false;
+      GameBoard.makeMove(null);
+
+      setTimeout(() => {
+        roundActive = true;
+      }, 300);
+    }
+  };
+
   const playGame = function () {
     const board = document.querySelector(".gameBoard");
     screen.classList.add("gameScreen");
     wrtPlayerInfo();
+    botGameHandler();
     board.addEventListener("click", gameEventHandler);
   };
 
