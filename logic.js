@@ -745,9 +745,9 @@ const DisplayController = (function () {
       opponent.getPlayerName() === "Bot"
     ) {
       roundActive = false;
-      GameBoard.makeMove(null);
-
+      showActivePlayer();
       setTimeout(() => {
+        GameBoard.makeMove(null);
         roundActive = true;
       }, 300);
     }
