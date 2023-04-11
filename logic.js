@@ -162,7 +162,7 @@ const GameBoard = (function () {
   };
 
   const makeMove = function (squareIndex) {
-    if (_gameBoard[squareIndex] === null || squareIndex === null) {
+    if (_gameBoard[squareIndex] === null || squareIndex === "noValue") {
       const playerShape = _player.getPlayerShape();
       const opponentShape = _opponent.getPlayerShape();
 
@@ -175,10 +175,7 @@ const GameBoard = (function () {
           _opponent.getPlayerName() === "Bot" &&
           opponentShape === _player_turn
         ) {
-          const botChoice = _opponent.generateMove(_gameBoard);
-          _gameBoard[botChoice] = opponentShape;
-          console.log(botChoice);
-          _renderShape(botChoice);
+          makeBotMove(opponentShape);
           _player_turn = playerShape;
         } else if (opponentShape === _player_turn) {
           _gameBoard[squareIndex] = opponentShape;
@@ -186,6 +183,16 @@ const GameBoard = (function () {
           _player_turn = playerShape;
         }
       }
+    }
+  };
+
+  const makeBotMove = function (opponentShape) {
+    const botChoice = _opponent.generateMove(_gameBoard);
+    if (botChoice !== undefined) {
+      _gameBoard[botChoice] = opponentShape;
+
+      _renderShape(botChoice);
+      _player_turn = playerShape;
     }
   };
 
@@ -745,7 +752,7 @@ const DisplayController = (function () {
       opponent.getPlayerName() === "Bot"
     ) {
       roundActive = false;
-      GameBoard.makeMove(null);
+      GameBoard.makeMove("noValue");
 
       setTimeout(() => {
         roundActive = true;
