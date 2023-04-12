@@ -690,8 +690,8 @@ const DisplayController = (function () {
       const squareIndex = e.target.id;
 
       GameBoard.makeMove(squareIndex);
-      botGameHandler(squareIndex);
       showActivePlayer();
+      botGameHandler(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
       showGameWinner();
@@ -753,11 +753,12 @@ const DisplayController = (function () {
       opponent.getPlayerName() === "Bot"
     ) {
       roundActive = false;
-      GameBoard.makeMove("noValue");
 
       setTimeout(() => {
         roundActive = true;
-      }, 300);
+        GameBoard.makeMove("noValue");
+        showActivePlayer();
+      }, 700);
     }
   };
 
