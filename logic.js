@@ -190,7 +190,6 @@ const GameBoard = (function () {
     const botChoice = _opponent.generateMove(_gameBoard);
     if (botChoice !== undefined) {
       _gameBoard[botChoice] = opponentShape;
-
       _renderShape(botChoice);
       _player_turn = playerShape;
     }
@@ -563,14 +562,16 @@ const DisplayController = (function () {
     }
   };
 
-  const showActivePlayer = function (squareIndex) {
-    const board = GameBoard.getBoard();
+  const showActivePlayer = function () {
     const playerInfo = document.querySelector(".player1-info");
     const opponentInfo = document.querySelector(".player2-info");
 
-    if (board[squareIndex] === null) {
-      playerInfo.classList.toggle("active");
-      opponentInfo.classList.toggle("active");
+    if (player.getPlayerShape() === GameBoard.getPlayerTurn()) {
+      playerInfo.classList.add("active");
+      opponentInfo.classList.remove("active");
+    } else if (opponent.getPlayerShape() === GameBoard.getPlayerTurn()) {
+      opponentInfo.classList.add("active");
+      playerInfo.classList.remove("active");
     }
   };
 
@@ -688,9 +689,9 @@ const DisplayController = (function () {
     if (roundActive) {
       const squareIndex = e.target.id;
 
-      showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
       botGameHandler(squareIndex);
+      showActivePlayer();
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
       showGameWinner();
