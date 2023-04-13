@@ -162,7 +162,7 @@ const GameBoard = (function () {
   };
 
   const makeMove = function (squareIndex) {
-    if (_gameBoard[squareIndex] === null || squareIndex === null) {
+    if (_gameBoard[squareIndex] === null || squareIndex === "noValue") {
       const playerShape = _player.getPlayerShape();
       const opponentShape = _opponent.getPlayerShape();
 
@@ -175,10 +175,7 @@ const GameBoard = (function () {
           _opponent.getPlayerName() === "Bot" &&
           opponentShape === _player_turn
         ) {
-          const botChoice = _opponent.generateMove(_gameBoard);
-          _gameBoard[botChoice] = opponentShape;
-          console.log(botChoice);
-          _renderShape(botChoice);
+          makeBotMove(opponentShape);
           _player_turn = playerShape;
         } else if (opponentShape === _player_turn) {
           _gameBoard[squareIndex] = opponentShape;
@@ -186,6 +183,15 @@ const GameBoard = (function () {
           _player_turn = playerShape;
         }
       }
+    }
+  };
+
+  const makeBotMove = function (opponentShape) {
+    const botChoice = _opponent.generateMove(_gameBoard);
+    if (botChoice !== undefined) {
+      _gameBoard[botChoice] = opponentShape;
+      _renderShape(botChoice);
+      _player_turn = playerShape;
     }
   };
 
@@ -556,14 +562,16 @@ const DisplayController = (function () {
     }
   };
 
-  const showActivePlayer = function (squareIndex) {
-    const board = GameBoard.getBoard();
+  const showActivePlayer = function () {
     const playerInfo = document.querySelector(".player1-info");
     const opponentInfo = document.querySelector(".player2-info");
 
-    if (board[squareIndex] === null) {
-      playerInfo.classList.toggle("active");
-      opponentInfo.classList.toggle("active");
+    if (player.getPlayerShape() === GameBoard.getPlayerTurn()) {
+      playerInfo.classList.add("active");
+      opponentInfo.classList.remove("active");
+    } else if (opponent.getPlayerShape() === GameBoard.getPlayerTurn()) {
+      opponentInfo.classList.add("active");
+      playerInfo.classList.remove("active");
     }
   };
 
@@ -681,8 +689,8 @@ const DisplayController = (function () {
     if (roundActive) {
       const squareIndex = e.target.id;
 
-      showActivePlayer(squareIndex);
       GameBoard.makeMove(squareIndex);
+      showActivePlayer();
       botGameHandler(squareIndex);
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
@@ -745,11 +753,13 @@ const DisplayController = (function () {
       opponent.getPlayerName() === "Bot"
     ) {
       roundActive = false;
-      showActivePlayer();
+
       setTimeout(() => {
         GameBoard.makeMove(null);
         roundActive = true;
-      }, 300);
+        GameBoard.makeMove("noValue");
+        showActivePlayer();
+      }, 700);
     }
   };
 
