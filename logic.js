@@ -637,8 +637,6 @@ const DisplayController = (function () {
       opponentInfo.classList.add("active");
       playerInfo.classList.remove("active");
     }
-
-    console.log("miau");
   };
 
   const showWinCombo = function (winner) {
@@ -790,6 +788,10 @@ const DisplayController = (function () {
         }, 2800);
       }
     });
+
+    setTimeout(() => {
+      botGameHandler();
+    }, 3000);
   };
 
   const showGameWinner = function () {
