@@ -114,6 +114,8 @@ const GameBoard = (function () {
   let _round = 1;
   let _gameBoard = [null, null, null, null, null, null, null, null, null];
   let _roundWinner = false;
+  let _roundWinningPattern;
+  let _roundWinnerShape;
 
   const setOpponent = function (newOpponent) {
     _opponent = newOpponent;
@@ -203,6 +205,70 @@ const GameBoard = (function () {
     }
   };
 
+  // const checkWin = function () {
+  //   const checkTie = _gameBoard.every((square) => {
+  //     return square !== null;
+  //   });
+  //   const winningCombinations = [
+  //     // horizontal
+  //     [0, 1, 2],
+  //     [3, 4, 5],
+  //     [6, 7, 8],
+  //     // vertical
+  //     [0, 3, 6],
+  //     [1, 4, 7],
+  //     [2, 5, 8],
+  //     // diagonal
+  //     [0, 4, 8],
+  //     [2, 4, 6],
+  //   ];
+
+  //   for (let i = 0; i < winningCombinations.length; i++) {
+  //     const [a, b, c] = winningCombinations[i];
+
+  //     if (
+  //       _gameBoard[a] !== null &&
+  //       _gameBoard[a] === _gameBoard[b] &&
+  //       _gameBoard[a] === _gameBoard[c]
+  //     ) {
+  //       _givePlayerScore([_gameBoard[a]][0]);
+  //       _round++;
+  //       _roundWinner = true;
+  //       return { shape: _gameBoard[a], winCombo: [a, b, c] };
+  //     }
+  //   }
+
+  //   if (checkTie) {
+  //     _round++;
+  //     _roundWinner = true;
+  //     _givePlayerScore("cross");
+  //     _givePlayerScore("donut");
+  //     return "tie";
+  //   }
+  // };
+
+  const updateWinInfo = function () {
+    if (checkWin() === "tie") {
+      _givePlayerScore("cross");
+      _givePlayerScore("donut");
+    } else {
+      const winnerShape = getWinInfo().shape;
+      _givePlayerScore(winnerShape);
+    }
+  };
+
+  const getWinInfo = function () {
+    const win = checkWin();
+    if (win === "tie") {
+      return "tie";
+    } else if (win) {
+      return {
+        shape: _roundWinnerShape,
+        winCombo: _roundWinningPattern,
+      };
+    }
+  };
+
   const checkWin = function () {
     const checkTie = _gameBoard.every((square) => {
       return square !== null;
@@ -220,27 +286,21 @@ const GameBoard = (function () {
       [0, 4, 8],
       [2, 4, 6],
     ];
-
     for (let i = 0; i < winningCombinations.length; i++) {
       const [a, b, c] = winningCombinations[i];
-
       if (
         _gameBoard[a] !== null &&
         _gameBoard[a] === _gameBoard[b] &&
         _gameBoard[a] === _gameBoard[c]
       ) {
-        _givePlayerScore([_gameBoard[a]][0]);
-        _round++;
+        _roundWinningPattern = [a, b, c];
+        _roundWinnerShape = _gameBoard[a];
         _roundWinner = true;
-        return { shape: _gameBoard[a], winCombo: [a, b, c] };
+        return true;
       }
     }
 
     if (checkTie) {
-      _round++;
-      _roundWinner = true;
-      _givePlayerScore("cross");
-      _givePlayerScore("donut");
       return "tie";
     }
   };
@@ -292,6 +352,8 @@ const GameBoard = (function () {
     getRoundWinState,
     resetRound,
     getPlayerTurn,
+    getWinInfo,
+    updateWinInfo,
   };
 })();
 
