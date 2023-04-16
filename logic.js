@@ -251,9 +251,11 @@ const GameBoard = (function () {
     if (checkWin() === "tie") {
       _givePlayerScore("cross");
       _givePlayerScore("donut");
-    } else {
+      _round++;
+    } else if (checkWin()) {
       const winnerShape = getWinInfo().shape;
       _givePlayerScore(winnerShape);
+      _round++;
     }
   };
 
@@ -635,6 +637,8 @@ const DisplayController = (function () {
       opponentInfo.classList.add("active");
       playerInfo.classList.remove("active");
     }
+
+    console.log("miau");
   };
 
   const showWinCombo = function (winner) {
@@ -652,7 +656,7 @@ const DisplayController = (function () {
 
   const showRoundWinner = function () {
     const roundHeader = document.querySelector(".roundHeader");
-    const winner = GameBoard.checkWin();
+    const winner = GameBoard.getWinInfo();
 
     if (winner === "tie") {
       roundHeader.classList.add("dissapear");
@@ -752,8 +756,9 @@ const DisplayController = (function () {
       const squareIndex = e.target.id;
 
       GameBoard.makeMove(squareIndex);
-      showActivePlayer();
       botGameHandler(squareIndex);
+      GameBoard.updateWinInfo();
+      showActivePlayer();
       showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
       disableGameBoard(); //disables gameboard if there's a round winner
       showGameWinner();
@@ -812,7 +817,8 @@ const DisplayController = (function () {
   const botGameHandler = function () {
     if (
       opponent.getPlayerShape() === GameBoard.getPlayerTurn() &&
-      opponent.getPlayerName() === "Bot"
+      opponent.getPlayerName() === "Bot" &&
+      !GameBoard.checkWin()
     ) {
       roundActive = false;
 
