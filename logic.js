@@ -205,48 +205,6 @@ const GameBoard = (function () {
     }
   };
 
-  // const checkWin = function () {
-  //   const checkTie = _gameBoard.every((square) => {
-  //     return square !== null;
-  //   });
-  //   const winningCombinations = [
-  //     // horizontal
-  //     [0, 1, 2],
-  //     [3, 4, 5],
-  //     [6, 7, 8],
-  //     // vertical
-  //     [0, 3, 6],
-  //     [1, 4, 7],
-  //     [2, 5, 8],
-  //     // diagonal
-  //     [0, 4, 8],
-  //     [2, 4, 6],
-  //   ];
-
-  //   for (let i = 0; i < winningCombinations.length; i++) {
-  //     const [a, b, c] = winningCombinations[i];
-
-  //     if (
-  //       _gameBoard[a] !== null &&
-  //       _gameBoard[a] === _gameBoard[b] &&
-  //       _gameBoard[a] === _gameBoard[c]
-  //     ) {
-  //       _givePlayerScore([_gameBoard[a]][0]);
-  //       _round++;
-  //       _roundWinner = true;
-  //       return { shape: _gameBoard[a], winCombo: [a, b, c] };
-  //     }
-  //   }
-
-  //   if (checkTie) {
-  //     _round++;
-  //     _roundWinner = true;
-  //     _givePlayerScore("cross");
-  //     _givePlayerScore("donut");
-  //     return "tie";
-  //   }
-  // };
-
   const updateWinInfo = function () {
     if (checkWin() === "tie") {
       _givePlayerScore("cross");
@@ -307,10 +265,6 @@ const GameBoard = (function () {
     }
   };
 
-  const getRoundWinState = function () {
-    return _roundWinner;
-  };
-
   const resetRound = function () {
     _roundWinner = false;
     _gameBoard = [null, null, null, null, null, null, null, null, null];
@@ -351,7 +305,6 @@ const GameBoard = (function () {
     getBoard,
     checkWin,
     getRoundScore,
-    getRoundWinState,
     resetRound,
     getPlayerTurn,
     getWinInfo,
@@ -743,7 +696,8 @@ const DisplayController = (function () {
   };
 
   const disableGameBoard = function () {
-    if (GameBoard.getRoundWinState()) {
+    const winOrTie = GameBoard.checkWin();
+    if (winOrTie) {
       roundActive = false;
       playNextRound();
     }
