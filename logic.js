@@ -828,7 +828,12 @@ const DisplayController = (function () {
         GameBoard.makeMove(null);
         roundActive = true;
         GameBoard.makeMove("noValue");
+        GameBoard.updateWinInfo();
         showActivePlayer();
+        showRoundWinner(); //displays round winner in a header text and animates winning combination shapes
+
+        showGameWinner();
+        disableGameBoard(); //disables gameboard if there's a round winner
       }, 700);
     }
   };
