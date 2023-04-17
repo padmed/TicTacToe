@@ -620,7 +620,9 @@ const DisplayController = (function () {
       if (winner.shape === player.getPlayerShape()) {
         roundHeader.classList.add("dissapear");
         setTimeout(() => {
-          roundHeader.textContent = `${player.getPlayerName()} GETS A SCORE`;
+          const str =
+            player.getPlayerName() === "You" ? "GET A SCORE" : "GETS A SCORE";
+          roundHeader.textContent = `${player.getPlayerName()} ${str}`;
           roundHeader.classList.remove("dissapear");
         }, 600);
       } else if (winner.shape === opponent.getPlayerShape()) {
