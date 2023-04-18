@@ -76,7 +76,7 @@ const Bot = function () {
     for (let i = 0; i <= gameBoard.length; i++) {
       if (gameBoard[i] === null) {
         boardCopy[i] = _bot.getPlayerShape();
-        let score = 1;
+        let score = minimax(boardCopy);
         boardCopy[i] = null;
 
         if (score > bestScore) {
@@ -89,6 +89,9 @@ const Bot = function () {
     return bestMove;
   };
 
+  const minimax = function (board) {
+    return 1;
+  };
   const generateMove = function (gameBoard) {
     if (_difficulity === "Easy") {
       console.log("under development");
@@ -217,8 +220,8 @@ const GameBoard = (function () {
     }
   };
 
-  const getWinInfo = function () {
-    const win = checkWin();
+  const getWinInfo = function (boardToCheck = null) {
+    const win = checkWin(boardToCheck);
     if (win === "tie") {
       return "tie";
     } else if (win) {
@@ -229,8 +232,9 @@ const GameBoard = (function () {
     }
   };
 
-  const checkWin = function () {
-    const checkTie = _gameBoard.every((square) => {
+  const checkWin = function (boardToCheck = null) {
+    boardToCheck === null ? (boardToCheck = _gameBoard) : boardToCheck;
+    const checkTie = boardToCheck.every((square) => {
       return square !== null;
     });
     const winningCombinations = [
@@ -249,12 +253,12 @@ const GameBoard = (function () {
     for (let i = 0; i < winningCombinations.length; i++) {
       const [a, b, c] = winningCombinations[i];
       if (
-        _gameBoard[a] !== null &&
-        _gameBoard[a] === _gameBoard[b] &&
-        _gameBoard[a] === _gameBoard[c]
+        boardToCheck[a] !== null &&
+        boardToCheck[a] === boardToCheck[b] &&
+        boardToCheck[a] === boardToCheck[c]
       ) {
         _roundWinningPattern = [a, b, c];
-        _roundWinnerShape = _gameBoard[a];
+        _roundWinnerShape = boardToCheck[a];
         _roundWinner = true;
         return true;
       }
