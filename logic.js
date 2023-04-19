@@ -49,6 +49,9 @@ const Player = function () {
 
 const Bot = function () {
   const _bot = Player();
+  const botShape = () => {
+    return _bot.getPlayerShape();
+  };
   let _difficulity = null;
 
   const setDifficulity = function (difficulityLevel) {
@@ -68,37 +71,48 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  const bestMove = function (gameBoard) {
+  const bestMove = function (gameBoard, shapes) {
     let bestScore = -Infinity;
-    let bestMove;
+    let move;
     let boardCopy = [...gameBoard];
+    const moveScores = scores(shapes);
 
     for (let i = 0; i <= gameBoard.length; i++) {
       if (gameBoard[i] === null) {
         boardCopy[i] = _bot.getPlayerShape();
-        let score = minimax(boardCopy);
+        let score = minimax(boardCopy, 0, true, moveScores);
         boardCopy[i] = null;
 
         if (score > bestScore) {
           bestScore = score;
-          bestMove = i;
+          move = i;
         }
       }
     }
 
-    return bestMove;
+    return move;
   };
 
-  const minimax = function (board) {
+  let scores = (shapes) => {
+    return {
+      [shapes.botShape]: 10,
+      [shapes.playerShape]: -10,
+      tie: 0,
+    };
+  };
+
+  const minimax = function (board, depth, isMaximizing, moveScores) {
+    let result = GameBoard.getWinInfo(board);
     return 1;
   };
-  const generateMove = function (gameBoard) {
+
+  const generateMove = function (gameBoard, shapes) {
     if (_difficulity === "Easy") {
       console.log("under development");
     } else if (_difficulity === "Medium") {
       console.log("under development");
     } else if (_difficulity === "Hard") {
-      return bestMove(gameBoard);
+      return bestMove(gameBoard, shapes);
     }
   };
 
@@ -192,7 +206,11 @@ const GameBoard = (function () {
   };
 
   const makeBotMove = function (opponentShape) {
-    const botChoice = _opponent.generateMove(_gameBoard);
+    const shapes = {
+      botShape: _opponent.getPlayerShape(),
+      playerShape: _player.getPlayerShape(),
+    };
+    const botChoice = _opponent.generateMove(_gameBoard, shapes);
     if (botChoice !== undefined) {
       _gameBoard[botChoice] = opponentShape;
       _renderShape(botChoice);
