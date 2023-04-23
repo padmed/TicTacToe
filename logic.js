@@ -71,28 +71,6 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  const bestMove = function (gameBoard, shapes) {
-    let bestScore = -Infinity;
-    let move;
-    let boardCopy = [...gameBoard];
-    const moveScores = scores(shapes);
-
-    for (let i = 0; i <= gameBoard.length; i++) {
-      if (gameBoard[i] === null) {
-        boardCopy[i] = _bot.getPlayerShape();
-        let score = minimax(boardCopy, 0, true, moveScores);
-        boardCopy[i] = null;
-
-        if (score > bestScore) {
-          bestScore = score;
-          move = i;
-        }
-      }
-    }
-
-    return move;
-  };
-
   let scores = (shapes) => {
     return {
       [shapes.botShape]: 10,
@@ -101,18 +79,73 @@ const Bot = function () {
     };
   };
 
-  const minimax = function (board, depth, isMaximizing, moveScores) {
-    let result = GameBoard.getWinInfo(board);
-    return 1;
+  const botMove = function (board, shapes) {
+    const boardCopy = board.slice();
+    const move = minimax(boardCopy, shapes, shapes.botShape);
+    return move;
   };
 
-  const generateMove = function (gameBoard, shapes) {
+  const minimax = function (board, shapes, player) {
+    let result = GameBoard.getWinInfo(board);
+    let moves = [];
+
+    if (result !== undefined) {
+      console.log(result.shape);
+      if (result.shape === shapes.botShape) {
+        return { score: 10 };
+      } else if (result.shape === shapes.playerShape) {
+        return { score: -10 };
+      } else if (result === "tie") {
+        return { score: 0 };
+      }
+    }
+
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === null) {
+        let move = {};
+        move["index"] = i;
+        board[i] = player;
+
+        if (player === shapes.botShape) {
+          const scoreResult = minimax(board, shapes, shapes.playerShape);
+          move.score = scoreResult.score;
+        } else if (player === shapes.playerShape) {
+          const scoreResult = minimax(board, shapes, shapes.botShape);
+          move.score = scoreResult.score;
+        }
+
+        board[i] = null;
+        moves.push(move);
+      }
+      let bestMove;
+      let bestScore;
+      if (player === shapes.botShape) {
+        bestScore = -Infinity;
+        for (let j = 0; j < moves.length; j++) {
+          if (moves[j] > bestScore) {
+            bestMove = j;
+          }
+        }
+      } else if (player === shapes.playerShape) {
+        bestScore = Infinity;
+        for (let j = 0; j < moves.length; j++) {
+          if (moves[j] < bestScore) {
+            bestMove = j;
+          }
+        }
+      }
+
+      return moves[bestMove];
+    }
+  };
+
+  const generateMove = function (gameBoard, shapes, player) {
     if (_difficulity === "Easy") {
       console.log("under development");
     } else if (_difficulity === "Medium") {
       console.log("under development");
     } else if (_difficulity === "Hard") {
-      return bestMove(gameBoard, shapes);
+      return botMove(gameBoard, shapes);
     }
   };
 
