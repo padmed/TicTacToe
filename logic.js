@@ -49,9 +49,6 @@ const Player = function () {
 
 const Bot = function () {
   const _bot = Player();
-  const botShape = () => {
-    return _bot.getPlayerShape();
-  };
   let _difficulity = null;
 
   const setDifficulity = function (difficulityLevel) {
@@ -71,10 +68,9 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  const botMove = function (board, shapes) {
+  const moveAI = function (board, shapes) {
     const boardCopy = board.slice();
     const move = minimax(boardCopy, shapes, shapes.botShape);
-    console.log(move.index);
     return move.index;
   };
 
@@ -150,7 +146,7 @@ const Bot = function () {
     } else if (_difficulity === "Medium") {
       console.log("under development");
     } else if (_difficulity === "Hard") {
-      return botMove(gameBoard, shapes);
+      return moveAI(gameBoard, shapes);
     }
   };
 
