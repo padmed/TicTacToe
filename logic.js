@@ -68,12 +68,6 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  const moveAI = function (board, shapes) {
-    const boardCopy = board.slice();
-    const move = minimax(boardCopy, shapes, shapes.botShape);
-    return move.index;
-  };
-
   const emptyIndexes = function (board) {
     let indexes = [];
     for (let i = 0; i < board.length; i++) {
@@ -83,6 +77,19 @@ const Bot = function () {
     }
 
     return indexes;
+  };
+
+  const moveEasy = function (board) {
+    const avaliableSpots = emptyIndexes(board);
+
+    const randomPosition = Math.floor(Math.random() * avaliableSpots.length);
+    console.log(avaliableSpots[randomPosition]);
+    return avaliableSpots[randomPosition];
+  };
+  const moveAI = function (board, shapes) {
+    const boardCopy = board.slice();
+    const move = minimax(boardCopy, shapes, shapes.botShape);
+    return move.index;
   };
 
   const minimax = function (board, shapes, player) {
@@ -142,7 +149,7 @@ const Bot = function () {
 
   const generateMove = function (gameBoard, shapes, player) {
     if (_difficulity === "Easy") {
-      console.log("under development");
+      return moveEasy(gameBoard);
     } else if (_difficulity === "Medium") {
       console.log("under development");
     } else if (_difficulity === "Hard") {
