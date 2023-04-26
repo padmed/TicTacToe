@@ -71,72 +71,77 @@ const Bot = function () {
     return shapes[randomIndex];
   };
 
-  let scores = (shapes) => {
-    return {
-      [shapes.botShape]: 10,
-      [shapes.playerShape]: -10,
-      tie: 0,
-    };
-  };
-
   const botMove = function (board, shapes) {
     const boardCopy = board.slice();
     const move = minimax(boardCopy, shapes, shapes.botShape);
-    return move;
+    console.log(move.index);
+    return move.index;
+  };
+
+  const emptyIndexes = function (board) {
+    let indexes = [];
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === null) {
+        indexes.push(i);
+      }
+    }
+
+    return indexes;
   };
 
   const minimax = function (board, shapes, player) {
     let result = GameBoard.getWinInfo(board);
     let moves = [];
+    const aviableSpots = emptyIndexes(board);
 
     if (result !== undefined) {
-      console.log(result.shape);
       if (result.shape === shapes.botShape) {
         return { score: 10 };
       } else if (result.shape === shapes.playerShape) {
         return { score: -10 };
-      } else if (result === "tie") {
+      } else if (aviableSpots.length === 0) {
         return { score: 0 };
       }
     }
 
-    for (let i = 0; i < board.length; i++) {
-      if (board[i] === null) {
-        let move = {};
-        move["index"] = i;
-        board[i] = player;
+    for (let i = 0; i < aviableSpots.length; i++) {
+      let move = {};
+      move["index"] = aviableSpots[i];
+      board[aviableSpots[i]] = player;
 
-        if (player === shapes.botShape) {
-          const scoreResult = minimax(board, shapes, shapes.playerShape);
-          move.score = scoreResult.score;
-        } else if (player === shapes.playerShape) {
-          const scoreResult = minimax(board, shapes, shapes.botShape);
-          move.score = scoreResult.score;
-        }
-
-        board[i] = null;
-        moves.push(move);
-      }
-      let bestMove;
-      let bestScore;
       if (player === shapes.botShape) {
-        bestScore = -Infinity;
-        for (let j = 0; j < moves.length; j++) {
-          if (moves[j] > bestScore) {
-            bestMove = j;
-          }
-        }
+        const scoreResult = minimax(board, shapes, shapes.playerShape);
+        move.score = scoreResult.score;
       } else if (player === shapes.playerShape) {
-        bestScore = Infinity;
-        for (let j = 0; j < moves.length; j++) {
-          if (moves[j] < bestScore) {
-            bestMove = j;
-          }
-        }
+        const scoreResult = minimax(board, shapes, shapes.botShape);
+        move.score = scoreResult.score;
       }
 
-      return moves[bestMove];
+      board[aviableSpots[i]] = null;
+      moves.push(move);
     }
+
+    let bestMove;
+    let bestScore;
+    if (player === shapes.botShape) {
+      bestScore = -Infinity;
+      for (let j = 0; j < moves.length; j++) {
+        if (moves[j].score > bestScore) {
+          bestScore = moves[j].score;
+          bestMove = j;
+        }
+      }
+    } else if (player === shapes.playerShape) {
+      bestScore = Infinity;
+      for (let j = 0; j < moves.length; j++) {
+        if (moves[j].score < bestScore) {
+          bestScore = moves[j].score;
+          bestMove = j;
+        }
+      }
+    }
+
+    if (moves[bestMove]) return moves[bestMove];
   };
 
   const generateMove = function (gameBoard, shapes, player) {
