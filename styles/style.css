@@ -295,7 +295,7 @@ h2 {
   cursor: pointer;
 }
 .game .gameBoard div img {
-  width: 95px;
+  width: 60px;
   transition: 0.2s;
   -webkit-backface-visibility: hidden; /* IE 9 */ /* Chrome, Safari, Opera */
   transform: translateZ(0);
@@ -360,6 +360,9 @@ h2 {
   .playerInfo.player2-info {
     height: 150px;
     width: 60px;
+  }
+  .gameScreen .gameBoard div img {
+    width: 95px;
   }
   .tictactoe .letter img {
     width: 150px;

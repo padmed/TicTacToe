@@ -283,7 +283,7 @@ h2 {
       cursor: pointer;
 
       img {
-        width: 95px;
+        width: 60px;
         transition: 0.2s;
         -webkit-backface-visibility: hidden;
         -ms-transform: translateZ(0); /* IE 9 */
@@ -369,6 +369,10 @@ h2 {
   .playerInfo.player2-info {
     height: 150px;
     width: 60px;
+  }
+
+  .gameScreen .gameBoard div img {
+    width: 95px;
   }
   .tictactoe .letter {
     img {
