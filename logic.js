@@ -83,9 +83,37 @@ const Bot = function () {
     const avaliableSpots = emptyIndexes(board);
 
     const randomPosition = Math.floor(Math.random() * avaliableSpots.length);
-    console.log(avaliableSpots[randomPosition]);
     return avaliableSpots[randomPosition];
   };
+
+  //check if adding a shape of a --BOT-- into the board results a winning combination
+  const moveMedium = function (board, shapes) {
+    const avaliableSpots = emptyIndexes(board);
+
+    for (let position of avaliableSpots) {
+      const boardCopy = board.slice();
+      boardCopy[position] = shapes.botShape;
+
+      const winInfo = GameBoard.getWinInfo(boardCopy);
+      if (winInfo && winInfo.shape === shapes.botShape) {
+        return position;
+      }
+    }
+
+    //check if adding a shape of a --PLAYER-- into the board results a winning combination
+    for (let position of avaliableSpots) {
+      const boardCopy = board.slice();
+      boardCopy[position] = shapes.playerShape;
+
+      const winInfo = GameBoard.getWinInfo(boardCopy);
+      if (winInfo && winInfo.shape === shapes.playerShape) {
+        return position;
+      }
+    }
+
+    return moveEasy(board);
+  };
+
   const moveAI = function (board, shapes) {
     const boardCopy = board.slice();
     const move = minimax(boardCopy, shapes, shapes.botShape);
@@ -151,7 +179,7 @@ const Bot = function () {
     if (_difficulity === "Easy") {
       return moveEasy(gameBoard);
     } else if (_difficulity === "Medium") {
-      console.log("under development");
+      return moveMedium(gameBoard, shapes);
     } else if (_difficulity === "Hard") {
       return moveAI(gameBoard, shapes);
     }
