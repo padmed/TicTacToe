@@ -355,6 +355,12 @@ h2 {
   background-color: transparent;
 }
 
+.player1-info.moveOut,
+.player2-info.moveOut {
+  overflow: hidden;
+  transition: transform 0.5s ease-out;
+}
+
 @media only screen and (min-width: 800px) {
   .playerInfo.player1-info,
   .playerInfo.player2-info {
@@ -386,6 +392,10 @@ h2 {
   .game > .player1-info,
   .game > .player2-info {
     font-size: 25px;
+  }
+  .player1-info.moveIn,
+  .player2-info.moveIn {
+    transition: transform 0.5s ease-out;
   }
 }
 @media (pointer: fine) {
@@ -621,6 +631,12 @@ body .opponents .opponent:last-child {
   padding: 10px 20px;
   gap: 10px;
 }
+.game .player1-info.moveOut {
+  transform: translateX(-500%);
+}
+.game .player2-info.moveOut {
+  transform: translateX(500%);
+}
 .game .wins {
   display: flex;
   gap: 7px;
@@ -658,6 +674,12 @@ body .opponents .opponent:last-child {
   .player1-info,
   .player2-info {
     margin-top: 200px;
+  }
+  .player1-info.moveIn {
+    transform: translateX(50%);
+  }
+  .player2-info.moveIn {
+    transform: translateX(-50%);
   }
 }
 body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game {

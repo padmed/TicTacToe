@@ -364,6 +364,12 @@ h2 {
   }
 }
 
+.player1-info.moveOut,
+.player2-info.moveOut {
+  overflow: hidden;
+  transition: transform 0.5s ease-out;
+}
+
 @media only screen and (min-width: 800px) {
   .playerInfo.player1-info,
   .playerInfo.player2-info {
@@ -402,6 +408,11 @@ h2 {
   .game > .player1-info,
   .game > .player2-info {
     font-size: 25px;
+  }
+
+  .player1-info.moveIn,
+  .player2-info.moveIn {
+    transition: transform 0.5s ease-out;
   }
 }
 

@@ -307,7 +307,7 @@ const GameBoard = (function () {
     }
   };
 
-  const getWinInfo = function (boardToCheck = null) {
+  const getWinInfo = function (boardToCheck = _gameBoard) {
     const win = checkWin(boardToCheck);
     if (win === "tie") {
       return "tie";
@@ -386,6 +386,14 @@ const GameBoard = (function () {
     return _gameBoard;
   };
 
+  const getGameWinner = function () {
+    if (_player.getScore() >= 3) {
+      return _player;
+    } else if (_opponent && _opponent.getScore() >= 3) {
+      return _opponent;
+    }
+  };
+
   return {
     setOpponent,
     getRandomPlayer,
@@ -400,6 +408,7 @@ const GameBoard = (function () {
     getPlayerTurn,
     getWinInfo,
     updateWinInfo,
+    getGameWinner,
   };
 })();
 
@@ -842,24 +851,18 @@ const DisplayController = (function () {
   };
 
   const showGameWinner = function () {
-    let winner;
-
-    if (player.getScore() >= 3 || opponent.getScore() >= 3) {
-      if (player.getScore() >= 3) {
-        winner = player;
-      } else if (opponent.getScore() >= 3) {
-        winner = opponent;
-      }
-    }
+    let winner = GameBoard.getGameWinner();
+    const playerInfos = document.querySelectorAll(".playerInfo");
 
     if (winner) {
-      const winnerBackground = document.querySelector(
-        `[data-background="${winner.getPlayerShape()}"]`
-      );
-      winnerBackground.style.display = "block";
-      setTimeout(() => {
-        winnerBackground.classList.add("active");
-      }, 1500);
+      playerInfos.forEach((info) => {
+        setTimeout(() => {
+          info.classList.add("moveIn");
+        }, 1500);
+        setTimeout(() => {
+          info.classList.add("moveOut");
+        }, 2000);
+      });
     }
   };
 

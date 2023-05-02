@@ -220,6 +220,14 @@ body {
     gap: 10px;
   }
 
+  .player1-info.moveOut {
+    transform: translateX(-500%);
+  }
+
+  .player2-info.moveOut {
+    transform: translateX(500%);
+  }
+
   .wins {
     display: flex;
     gap: 7px;
@@ -266,5 +274,13 @@ body {
   .player1-info,
   .player2-info {
     margin-top: 200px;
+  }
+
+  .player1-info.moveIn {
+    transform: translateX(50%);
+  }
+
+  .player2-info.moveIn {
+    transform: translateX(-50%);
   }
 }
