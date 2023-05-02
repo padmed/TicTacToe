@@ -266,18 +266,6 @@ h2 {
 .game .player2-info.active .win {
   background-color: #4e31aa;
 }
-.game #crossWinBackground,
-.game #donutWinBackground {
-  height: 100%;
-  width: 100%;
-  transition: 0.3s ease-in-out;
-}
-.game #crossWinBackground {
-  background-image: url(../img/background-crosses.png);
-}
-.game #donutWinBackground {
-  background-image: url(../img/background-donuts.png);
-}
 .game .gameBoard {
   width: 300px;
   height: 300px;
@@ -596,24 +584,6 @@ body .opponents .opponent:last-child {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.game #crossWinBackground,
-.game #donutWinBackground {
-  position: absolute;
-  z-index: 3;
-  display: none;
-}
-.game #crossWinBackground {
-  top: -100%;
-}
-.game #donutWinBackground {
-  bottom: -100%;
-}
-.game #crossWinBackground.active {
-  transform: translateY(100%);
-}
-.game #donutWinBackground.active {
-  transform: translateY(-100%);
 }
 .game .gameSquare {
   z-index: 1;

@@ -250,21 +250,6 @@ h2 {
     }
   }
 
-  #crossWinBackground,
-  #donutWinBackground {
-    height: 100%;
-    width: 100%;
-    transition: 0.3s ease-in-out;
-  }
-
-  #crossWinBackground {
-    background-image: url(../img/background-crosses.png);
-  }
-
-  #donutWinBackground {
-    background-image: url(../img/background-donuts.png);
-  }
-
   .gameBoard {
     width: 300px;
     height: 300px;
