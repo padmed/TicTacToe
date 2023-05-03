@@ -3,7 +3,8 @@ body {
   & > .difficulities,
   & > .opponents,
   & > .shapes,
-  & > .game {
+  & > .game,
+  & > .win {
     transform: scale(0);
     transition: 0.4s;
     opacity: 0;
@@ -15,7 +16,8 @@ body {
   .difficulities,
   .opponents,
   & > .shapes,
-  & > .game {
+  & > .game,
+  & > .win {
     display: none;
   }
 
@@ -31,7 +33,8 @@ body {
   & > .startGame,
   & > .difficulities,
   & > .shapes,
-  & > .game {
+  & > .game,
+  & > .win {
     display: none;
   }
 
@@ -47,7 +50,8 @@ body {
   & > .startGame,
   & > .opponents,
   & > .shapes,
-  & > .game {
+  & > .game,
+  & > .win {
     display: none;
   }
 
@@ -63,7 +67,8 @@ body {
   & > .startGame,
   & > .opponents,
   & > .difficulities,
-  & > .game {
+  & > .game,
+  & > .win {
     display: none;
   }
 
@@ -79,11 +84,29 @@ body {
   & > .startGame,
   & > .opponents,
   & > .difficulities,
-  & > .shapes {
+  & > .shapes,
+  & > .win {
     display: none;
   }
 
   & > .game {
+    transform: scale(1);
+    transition: 0.3s;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.winScreen {
+  & > .startGame,
+  & > .opponents,
+  & > .difficulities,
+  & > .shapes,
+  & > .game {
+    display: none;
+  }
+
+  & > .win {
     transform: scale(1);
     transition: 0.3s;
     opacity: 1;

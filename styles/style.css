@@ -656,7 +656,7 @@ body .opponents .opponent:last-child {
     transform: translateX(-50%);
   }
 }
-body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game {
+body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game, body > .win {
   transform: scale(0);
   transition: 0.4s;
   opacity: 0;
@@ -664,7 +664,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
 }
 
 .greetScreen .difficulities,
-.greetScreen .opponents, .greetScreen > .shapes, .greetScreen > .game {
+.greetScreen .opponents, .greetScreen > .shapes, .greetScreen > .game, .greetScreen > .win {
   display: none;
 }
 .greetScreen .startGame {
@@ -674,7 +674,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes, .opponentScreen > .game {
+.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes, .opponentScreen > .game, .opponentScreen > .win {
   display: none;
 }
 .opponentScreen > .opponents {
@@ -684,7 +684,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes, .difficulityScreen > .game {
+.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes, .difficulityScreen > .game, .difficulityScreen > .win {
   display: none;
 }
 .difficulityScreen .difficulities {
@@ -694,7 +694,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities, .shapeScreen > .game {
+.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities, .shapeScreen > .game, .shapeScreen > .win {
   display: none;
 }
 .shapeScreen > .shapes {
@@ -704,10 +704,20 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes {
+.gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes, .gameScreen > .win {
   display: none;
 }
 .gameScreen > .game {
+  transform: scale(1);
+  transition: 0.3s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.winScreen > .startGame, .winScreen > .opponents, .winScreen > .difficulities, .winScreen > .shapes, .winScreen > .game {
+  display: none;
+}
+.winScreen > .win {
   transform: scale(1);
   transition: 0.3s;
   opacity: 1;
