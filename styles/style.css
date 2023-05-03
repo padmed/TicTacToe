@@ -645,9 +645,6 @@ body .opponents .opponent:last-child {
     margin-left: 100px;
     margin-right: 100px;
   }
-  .gameBoard.hide {
-    transform: translateY(-100px);
-  }
   .player1-info,
   .player2-info {
     margin-top: 200px;

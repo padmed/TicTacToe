@@ -853,15 +853,21 @@ const DisplayController = (function () {
   const hideGameBoard = function () {
     const playerInfos = document.querySelectorAll(".playerInfo");
     const grid = document.querySelector(".gameBoard");
+    const roundHeader = document.querySelector(".roundHeader");
+    const game = document.querySelector(".game");
 
     playerInfos.forEach((info) => {
       setTimeout(() => {
         info.classList.add("moveIn");
         grid.classList.add("hide");
+        roundHeader.classList.add("dissapear");
       }, 1500);
       setTimeout(() => {
         info.classList.add("moveOut");
       }, 2000);
+      setTimeout(() => {
+        game.style.display = "none";
+      }, 2300);
     });
   };
 
