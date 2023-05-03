@@ -292,6 +292,10 @@ h2 {
 .game .gameBoard div img.show {
   transform: scale3d(1, 1, 1);
 }
+.game .gameBoard.hide {
+  transform: scale(0) translateY(-100%);
+  transition: transform 0.4s ease-out;
+}
 .game .gameBoard > div:nth-child(2),
 .game .gameBoard > div:nth-child(1),
 .game .gameBoard > div:nth-child(4),
@@ -640,6 +644,9 @@ body .opponents .opponent:last-child {
     margin-top: 80px;
     margin-left: 100px;
     margin-right: 100px;
+  }
+  .gameBoard.hide {
+    transform: translateY(-100px);
   }
   .player1-info,
   .player2-info {

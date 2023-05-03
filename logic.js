@@ -850,19 +850,26 @@ const DisplayController = (function () {
     }, 3000);
   };
 
+  const hideGameBoard = function () {
+    const playerInfos = document.querySelectorAll(".playerInfo");
+    const grid = document.querySelector(".gameBoard");
+
+    playerInfos.forEach((info) => {
+      setTimeout(() => {
+        info.classList.add("moveIn");
+        grid.classList.add("hide");
+      }, 1500);
+      setTimeout(() => {
+        info.classList.add("moveOut");
+      }, 2000);
+    });
+  };
+
   const showGameWinner = function () {
     let winner = GameBoard.getGameWinner();
-    const playerInfos = document.querySelectorAll(".playerInfo");
 
     if (winner) {
-      playerInfos.forEach((info) => {
-        setTimeout(() => {
-          info.classList.add("moveIn");
-        }, 1500);
-        setTimeout(() => {
-          info.classList.add("moveOut");
-        }, 2000);
-      });
+      hideGameBoard();
     }
   };
 
