@@ -905,6 +905,8 @@ const DisplayController = (function () {
         winHeading.textContent = "Player 2, you outplayed your opponent!";
         break;
     }
+
+    winHeading.classList.add("show");
   };
 
   const showGameWinner = function () {
@@ -915,7 +917,9 @@ const DisplayController = (function () {
       setTimeout(() => {
         screen.classList.add("winScreen");
       }, 2300);
-      renderWinnerHeading(winner);
+      setTimeout(() => {
+        renderWinnerHeading(winner);
+      }, 2400);
     }
   };
 

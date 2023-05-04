@@ -229,7 +229,12 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.3s ease-in-out;
+}
+
+.winHeading.show {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 @media only screen and (min-width: 800px) {
