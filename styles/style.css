@@ -343,6 +343,12 @@ h2 {
   transform: translateZ(0) scale3d(1, 1, 1);
 }
 
+.winner,
+.winHeading {
+  width: 70%;
+  font-size: 30px;
+}
+
 .playerInfo.active .win.score {
   background-color: transparent;
 }
@@ -388,6 +394,9 @@ h2 {
   .player1-info.moveIn,
   .player2-info.moveIn {
     transition: transform 0.5s ease-out;
+  }
+  .winHeading {
+    font-size: 40px;
   }
 }
 @media (pointer: fine) {
@@ -625,6 +634,17 @@ body .opponents .opponent:last-child {
   right: 1px;
 }
 
+.winner {
+  position: relative;
+}
+
+.winHeading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media only screen and (min-width: 800px) {
   .tictactoe {
     margin-top: 0;
@@ -656,7 +676,7 @@ body .opponents .opponent:last-child {
     transform: translateX(-50%);
   }
 }
-body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game, body > .win {
+body > .startGame, body > .difficulities, body > .opponents, body > .shapes, body > .game, body > .winner {
   transform: scale(0);
   transition: 0.4s;
   opacity: 0;
@@ -664,7 +684,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
 }
 
 .greetScreen .difficulities,
-.greetScreen .opponents, .greetScreen > .shapes, .greetScreen > .game, .greetScreen > .win {
+.greetScreen .opponents, .greetScreen > .shapes, .greetScreen > .game, .greetScreen > .winner {
   display: none;
 }
 .greetScreen .startGame {
@@ -674,7 +694,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes, .opponentScreen > .game, .opponentScreen > .win {
+.opponentScreen > .startGame, .opponentScreen > .difficulities, .opponentScreen > .shapes, .opponentScreen > .game, .opponentScreen > .winner {
   display: none;
 }
 .opponentScreen > .opponents {
@@ -684,7 +704,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes, .difficulityScreen > .game, .difficulityScreen > .win {
+.difficulityScreen > .startGame, .difficulityScreen > .opponents, .difficulityScreen > .shapes, .difficulityScreen > .game, .difficulityScreen > .winner {
   display: none;
 }
 .difficulityScreen .difficulities {
@@ -694,7 +714,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities, .shapeScreen > .game, .shapeScreen > .win {
+.shapeScreen > .startGame, .shapeScreen > .opponents, .shapeScreen > .difficulities, .shapeScreen > .game, .shapeScreen > .winner {
   display: none;
 }
 .shapeScreen > .shapes {
@@ -704,7 +724,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
   visibility: visible;
 }
 
-.gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes, .gameScreen > .win {
+.gameScreen > .startGame, .gameScreen > .opponents, .gameScreen > .difficulities, .gameScreen > .shapes, .gameScreen > .winner {
   display: none;
 }
 .gameScreen > .game {
@@ -717,7 +737,7 @@ body > .startGame, body > .difficulities, body > .opponents, body > .shapes, bod
 .winScreen > .startGame, .winScreen > .opponents, .winScreen > .difficulities, .winScreen > .shapes, .winScreen > .game {
   display: none;
 }
-.winScreen > .win {
+.winScreen > .winner {
   transform: scale(1);
   transition: 0.3s;
   opacity: 1;

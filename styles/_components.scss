@@ -347,6 +347,12 @@ h2 {
   }
 }
 
+.winner,
+.winHeading {
+  width: 70%;
+  font-size: 30px;
+}
+
 .playerInfo.active {
   .win.score {
     background-color: transparent;
@@ -402,6 +408,10 @@ h2 {
   .player1-info.moveIn,
   .player2-info.moveIn {
     transition: transform 0.5s ease-out;
+  }
+
+  .winHeading {
+    font-size: 40px;
   }
 }
 

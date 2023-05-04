@@ -4,7 +4,7 @@ body {
   & > .opponents,
   & > .shapes,
   & > .game,
-  & > .win {
+  & > .winner {
     transform: scale(0);
     transition: 0.4s;
     opacity: 0;
@@ -17,7 +17,7 @@ body {
   .opponents,
   & > .shapes,
   & > .game,
-  & > .win {
+  & > .winner {
     display: none;
   }
 
@@ -34,7 +34,7 @@ body {
   & > .difficulities,
   & > .shapes,
   & > .game,
-  & > .win {
+  & > .winner {
     display: none;
   }
 
@@ -51,7 +51,7 @@ body {
   & > .opponents,
   & > .shapes,
   & > .game,
-  & > .win {
+  & > .winner {
     display: none;
   }
 
@@ -68,7 +68,7 @@ body {
   & > .opponents,
   & > .difficulities,
   & > .game,
-  & > .win {
+  & > .winner {
     display: none;
   }
 
@@ -85,7 +85,7 @@ body {
   & > .opponents,
   & > .difficulities,
   & > .shapes,
-  & > .win {
+  & > .winner {
     display: none;
   }
 
@@ -106,7 +106,7 @@ body {
     display: none;
   }
 
-  & > .win {
+  & > .winner {
     transform: scale(1);
     transition: 0.3s;
     opacity: 1;
