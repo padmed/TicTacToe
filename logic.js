@@ -369,16 +369,18 @@ const GameBoard = (function () {
     crossIcon.src = "./icons/cross.svg";
     donutIcon.src = "./icons/donut.svg";
 
-    if (_player_turn === "cross") {
-      square.appendChild(crossIcon);
-      setTimeout(() => {
-        crossIcon.classList.add("show");
-      }, 50);
-    } else if (_player_turn === "donut") {
-      square.appendChild(donutIcon);
-      setTimeout(() => {
-        donutIcon.classList.add("show");
-      }, 50);
+    if (square !== null) {
+      if (_player_turn === "cross") {
+        square.appendChild(crossIcon);
+        setTimeout(() => {
+          crossIcon.classList.add("show");
+        }, 50);
+      } else if (_player_turn === "donut") {
+        square.appendChild(donutIcon);
+        setTimeout(() => {
+          donutIcon.classList.add("show");
+        }, 50);
+      }
     }
   };
 
@@ -387,10 +389,12 @@ const GameBoard = (function () {
   };
 
   const getGameWinner = function () {
-    if (_player.getScore() >= 3) {
-      return _player;
+    if (_opponent && _opponent.getScore() === 3 && _player.getScore() === 3) {
+      return "tie";
     } else if (_opponent && _opponent.getScore() >= 3) {
       return _opponent;
+    } else if (_player.getScore() >= 3) {
+      return _player;
     }
   };
 
@@ -867,8 +871,40 @@ const DisplayController = (function () {
       }, 2000);
       setTimeout(() => {
         game.style.display = "none";
+        screen.classList.remove("gameScreen");
       }, 2300);
     });
+  };
+
+  const renderWinnerHeading = function (winner) {
+    let winHeading = document.querySelector(".winHeading");
+    let winnerName = winner;
+    if (winner !== "tie") {
+      winnerName = winner.getPlayerName();
+    }
+
+    switch (winnerName) {
+      case "Bot":
+        winHeading.textContent =
+          "The game may be over, but the memories of your defeat will last a lifetime!";
+        break;
+
+      case "You":
+        winHeading.textContent = "You`ve won the game!";
+        break;
+
+      case "tie":
+        winHeading.textContent = "Well, well, well, it`s a draw!";
+        break;
+
+      case "Player 1":
+        winHeading.textContent = "Player 1, you outplayed your opponent!";
+        break;
+
+      case "Player 2":
+        winHeading.textContent = "Player 2, you outplayed your opponent!";
+        break;
+    }
   };
 
   const showGameWinner = function () {
@@ -876,6 +912,10 @@ const DisplayController = (function () {
 
     if (winner) {
       hideGameBoard();
+      setTimeout(() => {
+        screen.classList.add("winScreen");
+      }, 2300);
+      renderWinnerHeading(winner);
     }
   };
 
