@@ -88,7 +88,8 @@ body {
   .opponent.buttonActive,
   .difficulity.buttonActive,
   #crossBackground.visible > .shape.buttonActive,
-  #donutBackground.visible > .shape.buttonActive {
+  #donutBackground.visible > .shape.buttonActive,
+  #playAgain.buttonActive {
     box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);
     transform: scale(1.1);
   }
@@ -365,6 +366,16 @@ h2 {
   transition: transform 0.5s ease-out;
 }
 
+#playAgain {
+  @include base.button-style;
+  font-size: 20px;
+  transform: scale(0);
+  transition: 0.3s ease-in-out;
+}
+
+#playAgain.show {
+  transform: scale(1);
+}
 @media only screen and (min-width: 800px) {
   .playerInfo.player1-info,
   .playerInfo.player2-info {
@@ -419,7 +430,8 @@ h2 {
   .startButton,
   .opponent,
   .difficulity,
-  .shape {
+  .shape,
+  #playAgain {
     transition: 0.2s;
     &:hover {
       box-shadow: 0 0 30px 5px rgba($color: white, $alpha: 0.8);

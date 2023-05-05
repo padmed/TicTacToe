@@ -96,7 +96,8 @@ body #start.buttonActive,
 body .opponent.buttonActive,
 body .difficulity.buttonActive,
 body #crossBackground.visible > .shape.buttonActive,
-body #donutBackground.visible > .shape.buttonActive {
+body #donutBackground.visible > .shape.buttonActive,
+body #playAgain.buttonActive {
   box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
   transform: scale(1.1);
 }
@@ -359,6 +360,28 @@ h2 {
   transition: transform 0.5s ease-out;
 }
 
+#playAgain {
+  width: 200px;
+  height: 60px;
+  border: 4px solid #4e31aa;
+  background-color: #edd174;
+  color: #4e31aa;
+  font-size: 30px;
+  font-weight: bolder;
+  border-radius: 25px;
+  letter-spacing: 5px;
+  box-shadow: 0 0 30px 45px rgba(78, 49, 170, 0.8);
+  cursor: pointer;
+  transition: 0.1s;
+  font-size: 20px;
+  transform: scale(0);
+  transition: 0.3s ease-in-out;
+}
+
+#playAgain.show {
+  transform: scale(1);
+}
+
 @media only screen and (min-width: 800px) {
   .playerInfo.player1-info,
   .playerInfo.player2-info {
@@ -403,20 +426,23 @@ h2 {
   .startButton,
   .opponent,
   .difficulity,
-  .shape {
+  .shape,
+  #playAgain {
     transition: 0.2s;
   }
   .startButton:hover,
   .opponent:hover,
   .difficulity:hover,
-  .shape:hover {
+  .shape:hover,
+  #playAgain:hover {
     box-shadow: 0 0 30px 5px rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
   }
   .startButton:active,
   .opponent:active,
   .difficulity:active,
-  .shape:active {
+  .shape:active,
+  #playAgain:active {
     transform: scale(1.05);
   }
   .shapes > #crossBackground,
@@ -640,14 +666,16 @@ body .opponents .opponent:last-child {
 
 .winHeading {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(0);
+  top: -500%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: scale(0);
   transition: 0.3s ease-in-out;
 }
 
 .winHeading.show {
-  transform: translate(-50%, -50%) scale(1);
+  transform: scale(1);
 }
 
 @media only screen and (min-width: 800px) {

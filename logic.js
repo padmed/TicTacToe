@@ -911,6 +911,7 @@ const DisplayController = (function () {
 
   const showGameWinner = function () {
     let winner = GameBoard.getGameWinner();
+    const playAgainbtn = document.querySelector("#playAgain");
 
     if (winner) {
       hideGameBoard();
@@ -920,6 +921,10 @@ const DisplayController = (function () {
       setTimeout(() => {
         renderWinnerHeading(winner);
       }, 2400);
+      setTimeout(() => {
+        playAgainbtn.classList.add("show");
+        TouchButton.active(playAgainbtn);
+      }, 2800);
     }
   };
 
