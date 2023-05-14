@@ -199,7 +199,6 @@ const GameBoard = (function () {
   let _player_turn = "cross";
   let _round = 1;
   let _gameBoard = [null, null, null, null, null, null, null, null, null];
-  let _roundWinner = false;
   let _roundWinningPattern;
   let _roundWinnerShape;
 
@@ -369,18 +368,16 @@ const GameBoard = (function () {
     crossIcon.src = "./icons/cross.svg";
     donutIcon.src = "./icons/donut.svg";
 
-    if (square !== null) {
-      if (_player_turn === "cross") {
-        square.appendChild(crossIcon);
-        setTimeout(() => {
-          crossIcon.classList.add("show");
-        }, 50);
-      } else if (_player_turn === "donut") {
-        square.appendChild(donutIcon);
-        setTimeout(() => {
-          donutIcon.classList.add("show");
-        }, 50);
-      }
+    if (_player_turn === "cross") {
+      square.appendChild(crossIcon);
+      setTimeout(() => {
+        crossIcon.classList.add("show");
+      }, 50);
+    } else if (_player_turn === "donut") {
+      square.appendChild(donutIcon);
+      setTimeout(() => {
+        donutIcon.classList.add("show");
+      }, 50);
     }
   };
 
@@ -398,6 +395,16 @@ const GameBoard = (function () {
     }
   };
 
+  const resetGameBoard = function () {
+    _player = Player();
+    _opponent = null;
+    _player_turn = "cross";
+    _round = 1;
+    _gameBoard = [null, null, null, null, null, null, null, null, null];
+    _roundWinningPattern = undefined;
+    _roundWinnerShape = undefined;
+  };
+
   return {
     setOpponent,
     getRandomPlayer,
@@ -413,6 +420,7 @@ const GameBoard = (function () {
     getWinInfo,
     updateWinInfo,
     getGameWinner,
+    resetGameBoard,
   };
 })();
 
@@ -812,7 +820,6 @@ const DisplayController = (function () {
   const gameEventHandler = function (e) {
     if (roundActive) {
       const squareIndex = e.target.id;
-
       GameBoard.makeMove(squareIndex);
       botGameHandler(squareIndex);
       GameBoard.updateWinInfo();
@@ -924,8 +931,42 @@ const DisplayController = (function () {
       setTimeout(() => {
         playAgainbtn.classList.add("show");
         TouchButton.active(playAgainbtn);
+        playAgainbtn.onclick = () => {
+          restartGame();
+        };
       }, 2800);
     }
+  };
+
+  const removeUnwatedClasses = function () {
+    const randomPlayerHeader = document.querySelector("#randomPlayerHeader");
+    const gameScreen = document.querySelector(".game");
+    const gameBoardGrid = document.querySelector(".gameBoard");
+    const playerInfos = document.querySelectorAll(".playerInfo");
+    const scores = document.querySelectorAll(".win");
+
+    screen.classList.remove("winScreen");
+    randomPlayerHeader.classList.remove("disabled");
+    gameBoardGrid.classList.remove("hide");
+    gameScreen.style.display = "";
+
+    playerInfos.forEach((plInfo) => {
+      plInfo.classList.remove("moveIn");
+      plInfo.classList.remove("moveOut");
+      console.log("miau");
+    });
+
+    scores.forEach((score) => {
+      score.classList.remove("score");
+    });
+  };
+  const restartGame = function () {
+    GameBoard.resetGameBoard();
+    removeUnwatedClasses();
+    chooseOpponent();
+    roundActive = true;
+    player = GameBoard.getPlayer();
+    opponent = undefined;
   };
 
   const botGameHandler = function () {
@@ -935,7 +976,6 @@ const DisplayController = (function () {
       !GameBoard.checkWin()
     ) {
       roundActive = false;
-
       setTimeout(() => {
         GameBoard.makeMove(null);
         roundActive = true;
